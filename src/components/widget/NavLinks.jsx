@@ -38,9 +38,9 @@ const settingsLinks = [
 
 // Admin-specific links
 const adminOverViewLinks = [
-    { label: 'Dashboard', path: '/admin/dashboard', icon: <DashboardIcon sx={{ marginRight: '10px' }} /> },
-    { label: 'Explore', path: '/admin/explore', icon: <ExploreOutlined sx={{ marginRight: '10px' }} /> },
-    { label: 'Reports', path: '/admin/reports', icon: <BarChartIcon sx={{ marginRight: '10px' }} /> },
+    { label: 'Dashboard', path: '/ins/dashboard', icon: <DashboardIcon sx={{ marginRight: '10px' }} /> },
+    { label: 'Explore', path: '/ins/explore', icon: <ExploreOutlined sx={{ marginRight: '10px' }} /> },
+    { label: 'Reports', path: '/ins/reports', icon: <BarChartIcon sx={{ marginRight: '10px' }} /> },
 ];
 
 const adminWalletLinks = [

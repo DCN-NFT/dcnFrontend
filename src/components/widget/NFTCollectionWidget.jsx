@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Card, Typography, Grid, Box, Avatar, CardContent } from '@mui/material';
 import badger from '../../assets/badger.png';
+import SearchComponent from '../ui/SearchComponent';
+
+import { Button, Select, MenuItem, TextField, IconButton } from '@mui/material';
+import GridViewIcon from '@mui/icons-material/GridView'; // For grid icon
+import ListIcon from '@mui/icons-material/List'; // For list icon
+import Colors from '../../utils/Colors';
 
 // Mock data for NFT collections
 const mockNFTCollections = [
@@ -52,19 +58,62 @@ const NFTCollectionWidget = () => {
             }}
         >
             <Typography variant="h4" gutterBottom sx={{ color: '#1a237e', fontWeight: 'bold' }}>
-                NFT Collections Assigned to Students
+                NFT Certification Collection
             </Typography>
+
+            {/* Filter Section */}
+            <Box 
+                sx={{ 
+                    display: 'flex', 
+                    justifyContent: 'space-between', 
+                    alignItems: 'center', 
+                    paddingY: 2,
+                    borderTop: '1px solid rgba(0,0,0,0.1)',
+                    borderBottom: '1px solid rgba(0,0,0,0.1)',
+                    marginBottom: 3 
+                }}
+            >
+                {/* Filters and Search */}
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                    <Button variant="outlined" sx={{ height: '40px' }}>Status</Button>
+                    <Button variant="outlined" sx={{ height: '40px' }}>Chains</Button>
+                    <TextField
+                        variant="outlined"
+                        placeholder="Search by name"
+                        size="small"
+                        sx={{ width: '300px' }}
+                    />
+                </Box>
+
+                {/* Dropdown and Icons */}
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                    <Select
+                        variant="outlined"
+                        value="recently-received"
+                        sx={{ height: '40px' }}
+                    >
+                        <MenuItem value="recently-received">Recently received</MenuItem>
+                        <MenuItem value="recently-sent">Recently sent</MenuItem>
+                    </Select>
+                    <IconButton>
+                        <ListIcon />
+                    </IconButton>
+                    <IconButton>
+                        <GridViewIcon />
+                    </IconButton>
+                </Box>
+            </Box>
 
             <Grid container spacing={4}>
                 {nftCollections.map((nft) => (
                     <Grid item xs={12} md={4} key={nft.id}>
                         <Card
                             sx={{
-                                borderRadius: '35px',
+                                borderRadius: '15px',
                                 boxShadow: '0 4px 10px rgba(0, 0, 0, 0.1)',
                                 overflow: 'hidden',
                                 position: "relative",
-                                height: '400px',
+                                height: '500px',
                                 backgroundImage: `url('https://img.freepik.com/premium-photo/purple-purple-colored-background-with-purple-white-lines_1031776-78353.jpg')`,
                                 backgroundSize: 'cover',
                                 backgroundPosition: 'center',
@@ -96,7 +145,8 @@ const NFTCollectionWidget = () => {
                                     alt="Badger" 
                                     src={badger} 
                                     style={{ 
-                                        height: "105%", 
+                                        // height: "105%", 
+                                        width: 100,
                                         borderRadius: "10px 10px 10px 10px",
                                     }}
                                 />
@@ -125,14 +175,19 @@ const NFTCollectionWidget = () => {
                                             {nft.description}
                                         </Typography>
 
+                                    </Box>
+                                    <Box>
+                                        <Button variant="outlined" sx={{borderWidth: 3, width: '80%', color: 'white', borderRadius: '20px', padding: '10px 20px' }}>
+                                            View Certificate
+                                        </Button>
                                         {/* Date */}
                                         <Typography variant="body1" color="white" gutterBottom sx={{ fontWeight: '400', fontFamily: "Archivo Black", fontStyle: 'normal', marginY: 2 }}>
                                             31st, October 2024
                                         </Typography>
+                                        <Typography variant="body1" color="white" gutterBottom sx={{ fontWeight: '400', fontFamily: "Archivo Black", fontStyle: 'normal', marginY: 2 }}>
+                                            Issued by Mount kenya University
+                                        </Typography>
                                     </Box>
-                                    <Typography variant="body1" color="white" gutterBottom sx={{ fontWeight: '400', fontFamily: "Archivo Black", fontStyle: 'normal', marginY: 2 }}>
-                                        Issued by Mount kenya University
-                                    </Typography>
                                 </Box>
                             </CardContent>
                         </Card>

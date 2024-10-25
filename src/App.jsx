@@ -30,6 +30,7 @@ const App = () => {
                     <Route path="*" element={<HomePage />} />
 
                     {/* admin pages routes */}
+                    <Route path="/isn" element={<AdminDashboard />} />
                     <Route path="/ins/dashboard" element={<AdminDashboard />} />
                     <Route path="/ins/create-nft" element={<CreateNft />} />
                     <Route path="/ins/collection" element={<NftCollection />} />
