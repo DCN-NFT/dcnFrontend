@@ -11,6 +11,8 @@ import SettingsPages from './pages/SettingsPages';
 
 // admin pages
 import AdminDashboard from './pages/AdminDashboard';
+import CreateNft from './pages/CreateNft';
+import NftCollection from './pages/NftCollection';
 
 const App = () => {
     return (
@@ -28,7 +30,9 @@ const App = () => {
                     <Route path="*" element={<HomePage />} />
 
                     {/* admin pages routes */}
-                    <Route path="/admin/dashboard" element={<AdminDashboard />} />
+                    <Route path="/ins/dashboard" element={<AdminDashboard />} />
+                    <Route path="/ins/create-nft" element={<CreateNft />} />
+                    <Route path="/ins/collection" element={<NftCollection />} />
                 </Routes>
             </Router>
         </AppProvider>

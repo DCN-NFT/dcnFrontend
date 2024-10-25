@@ -44,10 +44,10 @@ const adminOverViewLinks = [
 ];
 
 const adminWalletLinks = [
-    { label: 'Wallet Accounts', path: '/admin/wallets', icon: <DashboardIcon sx={{ marginRight: '10px' }} /> },
-    { label: 'NFT Market', path: '/admin/nft-market', icon: <BarChartIcon sx={{ marginRight: '10px' }} /> },
-    { label: 'Collection', path: '/admin/claim-nftscollection', icon: <RedeemIcon sx={{ marginRight: '10px' }} /> },
-    { label: 'Create', path: '/admin/create-nft', icon: <PlusOneOutlined sx={{ marginRight: '10px' }} /> },
+    { label: 'Wallet Accounts', path: '/ins/wallets', icon: <DashboardIcon sx={{ marginRight: '10px' }} /> },
+    { label: 'NFT Market', path: '/ins/nft-market', icon: <BarChartIcon sx={{ marginRight: '10px' }} /> },
+    { label: 'Collection', path: '/ins/collection', icon: <RedeemIcon sx={{ marginRight: '10px' }} /> },
+    { label: 'Create', path: '/ins/create-nft', icon: <PlusOneOutlined sx={{ marginRight: '10px' }} /> },
 ];
 
 // Component for Navigation Links
@@ -73,7 +73,7 @@ const NavLinks = ({ isCollapsed }) => {
             {/* Overview Links */}
             {!isCollapsed && <Typography variant="h6" sx={{ color: Colors.primary, paddingLeft: 2, marginTop: 2 }}>OVERVIEW</Typography>}
             <List>
-                {overviewLinks.map((link) => (
+                {adminOverViewLinks.map((link) => (
                     <ListItem 
                         key={link.label} 
                         button 
@@ -102,7 +102,7 @@ const NavLinks = ({ isCollapsed }) => {
             {/* Wallet Links */}
             {!isCollapsed && <Typography variant="h6" sx={{ color: Colors.primary, paddingLeft: 2, marginTop: 2 }}>WALLET</Typography>}
             <List>
-                {walletLinkSet.map((link) => (
+                {adminWalletLinks.map((link) => (
                     <ListItem 
                         key={link.label} 
                         button 
