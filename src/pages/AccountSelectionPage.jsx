@@ -1,8 +1,6 @@
 import React from 'react';
 import { Card, CardContent, Typography, Button, Grow, Box } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import Particles from 'react-tsparticles';
-import { loadFull } from 'tsparticles';
 import { useCallback } from 'react';
 import { useAppContext } from '../context/AppProvider';
 
@@ -29,37 +27,6 @@ const AccountSelectionPage = () => {
 
     return (
         <Box display="flex" justifyContent="center" alignItems="center" minHeight="100vh" position="relative">
-            {/* Particle Background */}
-            <Particles
-                id="tsparticles"
-                init={particlesInit}
-                loaded={particlesLoaded}
-                options={{
-                    autoPlay: true,
-                    background: {
-                        color: {
-                            value: "#000000"
-                        },
-                        image: "",
-                        position: "",
-                        repeat: "",
-                        size: "",
-                        opacity: 1
-                    },
-                    backgroundMask: {
-                    composite: "destination-out",
-                    cover: {
-                    color: {
-                        value: "#fff"
-                    },
-                    opacity: 1
-                    },
-                    enable: false
-                },
-                }}
-                style={{ position: 'absolute', top: 0, left: 0 }}
-            />
-
             {/* Card with Account Selection */}
             <Grow in={true} timeout={1000}>
                 <Card sx={{ width: '80%', maxWidth: 400, padding: 3, textAlign: 'center' }}>
