@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timeline Design</title>
+    <style>
+        body {
+            background-color: #0a0a23;
+            color: white;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .timeline-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        .timeline-line {
+            position: absolute;
+            width: 4px;
+            height: 100%;
+            background-color: #4a4ab1;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+
+        .timeline-item {
+            display: flex;
+            width: 80%;
+            max-width: 800px;
+            margin: 20px 0;
+        }
+
+        .timeline-item:nth-child(odd) {
+            justify-content: flex-end;
+        }
+
+        .timeline-item:nth-child(even) {
+            justify-content: flex-start;
+        }
+
+        .timeline-content {
+            position: relative;
+            width: 300px;
+            padding: 20px;
+            background: linear-gradient(145deg, #1f1f3f, #29295c);
+            border-radius: 8px;
+            border: 1px solid #4a4ab1;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 2;
+        }
+
+        .timeline-content h3 {
+            font-size: 1.5em;
+            margin: 0;
+            color: #4a4ab1;
+        }
+
+        .timeline-content .month {
+            font-size: 1em;
+            color: #ffffff99;
+            margin-top: 5px;
+        }
+
+        .timeline-content p {
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: #cfcfdc;
+        }
+
+        .timeline-dot {
+            width: 12px;
+            height: 12px;
+            background-color: #4a4ab1;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 3;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-dot {
+            right: -20px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-dot {
+            left: -20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="timeline-container">
+    <div class="timeline-line"></div>
+    
+    <div class="timeline-item">
+        <div class="timeline-content">
+            <h3>Brief</h3>
+            <div class="month">January</div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris volutpat.</p>
+        </div>
+        <div class="timeline-dot"></div>
+    </div>
+
+    <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+            <h3>Research</h3>
+            <div class="month">February</div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris volutpat.</p>
+        </div>
+    </div>
+
+    <div class="timeline-item">
+        <div class="timeline-content">
+            <h3>Discover</h3>
+            <div class="month">March</div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris volutpat.</p>
+        </div>
+        <div class="timeline-dot"></div>
+    </div>
+
+    <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+            <h3>Design</h3>
+            <div class="month">April</div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris volutpat.</p>
+        </div>
+    </div>
+
+    <div class="timeline-item">
+        <div class="timeline-content">
+            <h3>Testing</h3>
+            <div class="month">May</div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris volutpat.</p>
+        </div>
+        <div class="timeline-dot"></div>
+    </div>
+
+    <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+            <h3>Launch & Feedback</h3>
+            <div class="month">June</div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris volutpat.</p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

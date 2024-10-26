@@ -1,6 +1,7 @@
 import React from 'react';
 import HomeTopBar from '../components/widget/HomeTopBar';
 import WhyChooseUs from '../components/widget/WhyChooseUs';
+import AcademicAchievement from '../components/widget/AcademicAchievement';
 
 import { Box, Typography, Grid, Button, Paper } from '@mui/material';
 import bgImage from '../assets/bgImage.png'; // Import the background image
@@ -97,6 +98,9 @@ const HomePage = () => {
 
             {/* ##########################  Main Content  ########################## */}
             <WhyChooseUs />
+
+            {/* ##########################  Academic Achievements  ########################## */}
+            <AcademicAchievement />
 
             {/* empowering students */}
             <Box 

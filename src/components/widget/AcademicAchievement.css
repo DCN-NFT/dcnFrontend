@@ -1,0 +1,104 @@
+.timeline-container {
+    display: flex;
+    flex-wrap: wrap;         /* Allows wrapping after a set number of items */
+    gap: 50px;               /* Adds spacing between items */
+    justify-content: space-between;
+    width: 100%;             /* Ensure it takes full width */
+    position: relative;      /* Allow absolute positioning of children */
+}
+
+.timeline-line {
+    position: absolute;
+    width: 4px;
+    height: 100%;            /* Make sure this is full height */
+    background-color: #4a4ab1;
+    top: 10;
+    bottom: 10;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+}
+
+.timeline-item {
+    flex-basis: calc(50% - 50px); /* Each item will take up 50% of the container width minus the gap */
+    box-sizing: border-box;  
+    display: flex;
+    align-items: center;  /* Center align items vertically */
+    max-height: 200px;
+    position: relative;   /* Allow absolute positioning of children */
+}
+
+.timeline-content {
+    position: relative;
+    width: 500px;
+    padding: 20px;
+    background: linear-gradient(145deg, #1f1f3f, #29295c);
+    border-radius: 8px;
+    border: 1px solid #4a4ab1;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+}
+.timeline-dot {
+    width: 20px;
+    height: 20px;
+    background-color: #4a4ab1;
+    border-radius: 50%;
+    position: absolute;
+    transform: translateY(-50%); /* Center the dot vertically */
+    z-index: 1000;
+}
+
+.timeline-item:nth-child(even) .timeline-dot {
+    left: -60px; /* Position to the left of the timeline line */
+}
+
+.timeline-item:nth-child(odd) .timeline-dot {
+    right: -60px; /* Position to the right of the timeline line */
+}
+
+.timeline-item:nth-child(odd) {
+    justify-content: flex-end;
+}
+
+.timeline-item:nth-child(even) {
+    justify-content: flex-start;
+}
+
+.timeline-content h3 {
+    font-size: 1.5em;
+    margin: 0;
+    color: #4a4ab1;
+}
+
+.timeline-content .month {
+    font-size: 1em;
+    color: #ffffff99;
+    margin-top: 5px;
+}
+
+.timeline-content p {
+    margin-top: 10px;
+    font-size: 0.9em;
+    color: #cfcfdc;
+}
+
+
+.timeline-item:nth-child(2) {
+    transform: translateY(50%);
+}
+
+.timeline-item:nth-child(3){
+    transform: translateY(50%);
+}
+
+.timeline-item:nth-child(4){
+    transform: translateY(100%);
+}
+
+.timeline-item:nth-child(5){
+    transform: translateY(100%);
+}
+
+.timeline-item:nth-child(6){
+    transform: translateY(150%);
+}
