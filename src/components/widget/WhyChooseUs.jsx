@@ -15,7 +15,7 @@ const WhyChooseUs = () => {
                 sx={{
                     backgroundColor: 'rgba(255, 255, 255, 0.2)',
                     paddingX:'10%',
-                    paddingY: '5%',
+                    paddingY: '2%',
                     
                 }}
             >
@@ -39,7 +39,7 @@ const WhyChooseUs = () => {
                     </Typography>
 
                     {/* connect wallet btn */}
-                    <Button variant="contained" sx={{ mt: 2, color: 'white', borderRadius: 10, paddingX: 10, paddingY: 2, fontWeight: 800, fontSize: 20 }} backgroundColor={'primary'}>
+                    <Button variant="contained" sx={{ mt: 10, color: 'white', borderRadius: 10, paddingX: 10, paddingY: 2, fontWeight: 800, fontSize: 20 }} backgroundColor={'primary'}>
                         Connect Wallet
                     </Button>
                 </Grid>

@@ -90,6 +90,20 @@ const HomeTopBar = () => {
                 </Link>
             </Box>
 
+            {/* Add the DCN Dashboard Button in the sidebar */}
+            <Button 
+                variant="outlined" 
+                color="primary" 
+                size="large" 
+                gap={3} 
+                to="/account-selection" 
+                component={Link}
+                sx={{ borderRadius: 5, paddingY: 1.5, marginTop: 2, display: { xs: 'none', md: 'flex' } }} // Margin for spacing
+            >
+                DCN Dashboard
+                <ArrowForwardIcon sx={{mx: 2}}/>
+            </Button>
+
             {/* Drawer for small screens */}
             <Drawer anchor='left' open={isOpen} onClose={toggleDrawer(false)}>
                 {menuItems}

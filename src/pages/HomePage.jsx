@@ -10,6 +10,7 @@ import Colors from '../utils/Colors';
 import Image1 from '../assets/image1.png';
 import { Link } from 'react-router-dom';
 import Footer from '../components/widget/Footer'
+import ThreeDModel from '../components/widget/ThreeDModel';
 
 const academicAchievements = [  
     {
@@ -109,7 +110,9 @@ const HomePage = () => {
                             </Button>
                         </Grid>
 
-                        <Grid item xs={12} sm={12} md={6}> </Grid>
+                        <Grid item xs={12} sm={12} md={6}> 
+                            {/* <ThreeDModel />  */}
+                        </Grid>
                     </Grid>
                 </Box>
 
@@ -117,9 +120,6 @@ const HomePage = () => {
 
             {/* ##########################  Main Content  ########################## */}
             <WhyChooseUs />
-
-            {/* ##########################  Academic Achievements  ########################## */}
-            <AcademicAchievement />
 
             {/* empowering students */}
             <Box 
@@ -142,6 +142,10 @@ const HomePage = () => {
                     </Grid>
                 </Grid>
             </Box>
+
+
+            {/* ##########################  Academic Achievements  ########################## */}
+            <AcademicAchievement />
 
             {/* ##########################  Our Creators  ########################## */}
             <OurCreators />

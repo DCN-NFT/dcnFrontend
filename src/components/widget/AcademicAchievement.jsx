@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import './AcademicAchievement.css';
 
 const AcademicAchievement = () => {
@@ -18,6 +18,8 @@ const AcademicAchievement = () => {
             backgroundColor: '#0a0a23', 
             padding:10
         }}>
+            {/* DCN Journey Timeline */}
+            <Typography variant="h3" sx={{ color: 'white', textAlign: 'center', fontWeight: 'bold', marginBottom: 3 }}>DCN Journey Timeline</Typography>
             <Box 
                 sx={{ 
                     position: 'relative', 
