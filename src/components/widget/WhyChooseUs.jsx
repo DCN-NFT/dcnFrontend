@@ -1,23 +1,27 @@
 import { Box, Button, Grid, Typography } from '@mui/material'
-import React from 'react'
+import React from 'react';
+import whysChooseUsImage from '../../assets/whyChooseUs.png';
 
 const WhyChooseUs = () => {
     return (
         <Box
             sx={{
                 backgroundColor: 'inherit',
-                minHeight: '400px',
+                maxHeight: '600px',
+                overflow: 'hidden',
             }}
         >
             <Grid container 
                 sx={{
                     backgroundColor: 'rgba(255, 255, 255, 0.2)',
-                    minHeight: 'inherit',
+                    maxHeight: 'inherit',
                     paddingX:'10%',
-                    paddingY: '5%',
+                    // paddingY: '5%',
                 }}
             >
-                <Grid item xs={6}> IMAGE </Grid>
+                <Grid item xs={6}> 
+                    <img src={whysChooseUsImage} alt="why choose us" style={{ height: '100%', width: '100%' }} />    
+                </Grid>
                 <Grid item xs={6}>
                     <Typography variant="h2" sx={{ fontWeight: 'bold', color: 'white', mb: 2 }}>
                         Why Choose Us

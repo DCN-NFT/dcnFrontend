@@ -3,6 +3,15 @@ import React from 'react';
 import Colors from '../../utils/Colors';
 
 const OurCreators = () => {
+    const instituitons = [
+        { name: 'MKU University', description: 'MKU University is a leading institution in Kenya.' },
+        { name: 'KU University', description: 'KU University is a leading institution in Kenya.' },
+        { name: 'JKUAT University', description: 'JKUAT University is a leading institution in Kenya.' },
+        { name: 'Strathmore University', description: 'Strathmore University is a leading institution in Kenya.' },
+        { name: 'UON University', description: 'UON University is a leading institution in Kenya.' },
+        { name: 'KCA University', description: 'KCA University is a leading institution in Kenya.' },
+    ];
+
     return (
         <Box 
             sx={{
@@ -22,15 +31,15 @@ const OurCreators = () => {
                     flexWrap: 'wrap'
                 }}
             >
-                {[1, 2, 3, 4, 5, 6].map((item, index) => (
+                {instituitons.map((item, index) => (
                     <Card key={index} sx={{ width: 400, margin: 2, backgroundColor: 'inherit', border: '1px solid #4a4ab1' }}>
                         <CardActionArea>
                             <CardContent>
-                                <Typography gutterBottom variant="h5" component="div">
-                                    Creator {item}
+                                <Typography gutterBottom variant="h5" component="div" sx={{ color: Colors.lighter, fontWeight: 'bold' }}>
+                                    {item.name}
                                 </Typography>
-                                <Typography variant="body2" color="text.secondary">
-                                    Brief description about the creator.
+                                <Typography variant="body1" color={Colors.light}>
+                                    {item.description}
                                 </Typography>
                             </CardContent>
                         </CardActionArea>
