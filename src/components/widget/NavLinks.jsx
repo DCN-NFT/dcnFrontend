@@ -17,37 +17,37 @@ import { Explore, ExploreOffOutlined, ExploreOutlined, PlusOne, PlusOneOutlined 
 
 // Define the nav links array for user roles
 const navLinks = [
-    { label: 'Dashboard', path: '/dashboard', icon: <DashboardIcon sx={{ marginRight: '10px' }} /> },
-    { label: 'Docs', path: '/docs', icon: <DocumentScanner sx={{ marginRight: '10px' }} /> },
-    { label: 'Reports', path: '/reports', icon: <BarChartIcon sx={{ marginRight: '10px' }} /> },
+    { label: 'Dashboard', path: '/account/student/dashboard', icon: <DashboardIcon sx={{ marginRight: '10px' }} /> },
+    { label: 'Docs', path: '/account/student/docs', icon: <DocumentScanner sx={{ marginRight: '10px' }} /> },
+    { label: 'Reports', path: '/account/student/reports', icon: <BarChartIcon sx={{ marginRight: '10px' }} /> },
     
 ];
 
 const walletLinks = [
-    { label: 'Wallet Accounts', path: '/wallets', icon: <DashboardIcon sx={{ marginRight: '10px' }} /> },
-    { label: 'NFT Market', path: '/nft-market', icon: <BarChartIcon sx={{ marginRight: '10px' }} /> },
-    { label: 'Claim NFTs', path: '/claim-nfts', icon: <RedeemIcon sx={{ marginRight: '10px' }} /> },
+    { label: 'Wallet Accounts', path: '/account/student/wallets', icon: <DashboardIcon sx={{ marginRight: '10px' }} /> },
+    { label: 'NFT Market', path: '/account/student/nft-market', icon: <BarChartIcon sx={{ marginRight: '10px' }} /> },
+    { label: 'Claim NFTs', path: '/account/student/claim-nfts', icon: <RedeemIcon sx={{ marginRight: '10px' }} /> },
     
 ];
 
 const settingsLinks = [
-    { label: 'Setting', path: '/setting', icon: <SettingsIcon sx={{ marginRight: '10px' }} /> },
-    { label: 'Notifications', path: '/notification', icon: <Notification sx={{ marginRight: '10px' }} /> },
-    { label: 'Logout', path: '/logout', icon: <LogoutIcon sx={{ marginRight: '10px' }} />}
+    { label: 'Setting', path: 'account/student/setting', icon: <SettingsIcon sx={{ marginRight: '10px' }} /> },
+    { label: 'Notifications', path: 'account/student/notification', icon: <Notification sx={{ marginRight: '10px' }} /> },
+    { label: 'Logout', path: 'account/student/logout', icon: <LogoutIcon sx={{ marginRight: '10px' }} />}
 ];
 
 // Admin-specific links
 const adminOverViewLinks = [
-    { label: 'Dashboard', path: '/ins/dashboard', icon: <DashboardIcon sx={{ marginRight: '10px' }} /> },
-    { label: 'Explore', path: '/ins/explore', icon: <ExploreOutlined sx={{ marginRight: '10px' }} /> },
-    { label: 'Reports', path: '/ins/reports', icon: <BarChartIcon sx={{ marginRight: '10px' }} /> },
+    { label: 'Dashboard', path: '/account/institution/dashboard', icon: <DashboardIcon sx={{ marginRight: '10px' }} /> },
+    { label: 'Explore', path: '/account/institution/explore', icon: <ExploreOutlined sx={{ marginRight: '10px' }} /> },
+    { label: 'Reports', path: '/account/institution/reports', icon: <BarChartIcon sx={{ marginRight: '10px' }} /> },
 ];
 
 const adminWalletLinks = [
-    { label: 'Wallet Accounts', path: '/ins/wallets', icon: <DashboardIcon sx={{ marginRight: '10px' }} /> },
-    { label: 'NFT Market', path: '/ins/nft-market', icon: <BarChartIcon sx={{ marginRight: '10px' }} /> },
-    { label: 'Collection', path: '/ins/collection', icon: <RedeemIcon sx={{ marginRight: '10px' }} /> },
-    { label: 'Create', path: '/ins/create-nft', icon: <PlusOneOutlined sx={{ marginRight: '10px' }} /> },
+    { label: 'Wallet Accounts', path: '/account/institution/wallets', icon: <DashboardIcon sx={{ marginRight: '10px' }} /> },
+    { label: 'NFT Market', path: '/account/institution/nft-market', icon: <BarChartIcon sx={{ marginRight: '10px' }} /> },
+    { label: 'Collection', path: '/account/institution/collection', icon: <RedeemIcon sx={{ marginRight: '10px' }} /> },
+    { label: 'Create', path: '/account/institution/create-nft', icon: <PlusOneOutlined sx={{ marginRight: '10px' }} /> },
 ];
 
 // Component for Navigation Links
@@ -55,10 +55,6 @@ const NavLinks = ({ isCollapsed }) => {
     const location = useLocation();
     const isActive = (path) => location.pathname === path;
     const { role } = useAppContext();  // Get user role from context
-
-    // Determine which links to show based on role
-    const overviewLinks = role === 'admin' ? navLinks: adminOverViewLinks ;
-    const walletLinkSet = role === 'admin' ?  adminWalletLinks : walletLinks;
 
     return (
         <Box sx={{ padding: '1rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%' }}>
@@ -73,7 +69,32 @@ const NavLinks = ({ isCollapsed }) => {
             {/* Overview Links */}
             {!isCollapsed && <Typography variant="h6" sx={{ color: Colors.primary, paddingLeft: 2, marginTop: 2 }}>OVERVIEW</Typography>}
             <List>
-                {adminOverViewLinks.map((link) => (
+                {role === 'student' && navLinks.map((link) => (
+                    <ListItem 
+                        key={link.label} 
+                        button 
+                        component={Link} 
+                        to={link.path}
+                        sx={{
+                            color: isActive(link.path) ? '#007bff' : '#6c757d',
+                            fontWeight: 'bold',
+                            backgroundColor: isActive(link.path) ? Colors.white : 'transparent',
+                            borderLeft: isActive(link.path) ? `5px solid #007bff` : 'none',
+                            borderRadius: '0px 10px 10px 0px',
+                            '&:hover': {
+                                backgroundColor: Colors.primary + '33',
+                            },
+                            display: 'flex',
+                            alignItems: 'center',
+                            marginBottom: isCollapsed ? 3 : 0,
+                        }}
+                    >
+                        {React.cloneElement(link.icon, { fontSize: isCollapsed ? 'large' : 'medium', sx: { marginRight: isCollapsed ? 0 : '10px' } })}
+                        {!isCollapsed && <ListItemText primary={link.label} />}
+                    </ListItem>
+                ))}
+
+                {role === 'institution' && adminOverViewLinks.map((link) => (
                     <ListItem 
                         key={link.label} 
                         button 
@@ -102,7 +123,29 @@ const NavLinks = ({ isCollapsed }) => {
             {/* Wallet Links */}
             {!isCollapsed && <Typography variant="h6" sx={{ color: Colors.primary, paddingLeft: 2, marginTop: 2 }}>WALLET</Typography>}
             <List>
-                {adminWalletLinks.map((link) => (
+                {role === 'student' && walletLinks.map((link) => (
+                    <ListItem
+                        component={Link} 
+                        to={link.path}
+                        sx={{
+                            color: isActive(link.path) ? '#007bff' : '#6c757d',
+                            fontWeight: 'bold',
+                            backgroundColor: isActive(link.path) ? Colors.white : 'transparent',
+                            borderLeft: isActive(link.path) ? `5px solid #007bff` : 'none',
+                            borderRadius: '0px 10px 10px 0px',
+                            '&:hover': {
+                                backgroundColor: Colors.primary + '33',
+                            },
+                            display: 'flex',
+                            alignItems: 'center',
+                            marginBottom: isCollapsed ? 3 : 0,
+                        }}
+                    >
+                        {React.cloneElement(link.icon, { fontSize: isCollapsed ? 'large' : 'medium', sx: { marginRight: isCollapsed ? 0 : '10px' } })}
+                        {!isCollapsed && <ListItemText primary={link.label} />}
+                    </ListItem>
+                ))}
+                {role === 'institution' && adminWalletLinks.map((link) => (
                     <ListItem 
                         key={link.label} 
                         button 

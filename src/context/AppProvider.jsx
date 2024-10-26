@@ -14,7 +14,7 @@ export const AppProvider = ({ children }) => {
     const [connectedWallet, setConnectedWallet] = useState('');
     const [nfts, setNfts] = useState([]); // New state for NFTs
     const [isCollapsed, setIsCollapsed] = useState(false); // State to control sidebar collapse
-    const [role, setRole ] = useState('admin'); 
+    const [role, setRole ] = useState('student'); 
     
     const value = {
         connectedWallet,
@@ -23,6 +23,8 @@ export const AppProvider = ({ children }) => {
         setNfts, // Expose setNfts to update the NFTs state
         isCollapsed,
         setIsCollapsed, // Expose setIsCollapsed to update the sidebar collapse state
+        role,
+        setRole
     };
 
     return (

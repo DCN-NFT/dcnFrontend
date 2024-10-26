@@ -13,6 +13,7 @@ import SettingsPages from './pages/SettingsPages';
 import AdminDashboard from './pages/AdminDashboard';
 import CreateNft from './pages/CreateNft';
 import NftCollection from './pages/NftCollection';
+import AccountSelectionPage from './pages/AccountSelectionPage';
 
 const App = () => {
     return (
@@ -20,20 +21,22 @@ const App = () => {
             <Router>
                 <Routes>
                     <Route path="/" element={<HomePage />} />
+                    <Route path="/account-selection" element={<AccountSelectionPage />} />
 
                     {/* student page routes */}
-                    <Route path="/dashboard" element={<DashboardPage />} />
-                    <Route path="/nft-market" element={<NftMarketplacePage />} />
-                    <Route path="/wallets" element={<WalletAccountPage />} />
-                    <Route path="/claim-nfts" element={<ClaimNft />} />
-                    <Route path="/setting" element={<SettingsPages />} />
+                    <Route path="account/student" element={<DashboardPage />} />
+                    <Route path="account/student/dashboard" element={<DashboardPage />} />
+                    <Route path="account/student/nft-market" element={<NftMarketplacePage />} />
+                    <Route path="account/student/wallets" element={<WalletAccountPage />} />
+                    <Route path="account/student/claim-nfts" element={<ClaimNft />} />
+                    <Route path="account/student/setting" element={<SettingsPages />} />
                     <Route path="*" element={<HomePage />} />
 
                     {/* admin pages routes */}
-                    <Route path="/isn" element={<AdminDashboard />} />
-                    <Route path="/ins/dashboard" element={<AdminDashboard />} />
-                    <Route path="/ins/create-nft" element={<CreateNft />} />
-                    <Route path="/ins/collection" element={<NftCollection />} />
+                    <Route path="/account/institution" element={<AdminDashboard />} />
+                    <Route path="/account/institution/dashboard" element={<AdminDashboard />} />
+                    <Route path="/account/institution/create-nft" element={<CreateNft />} />
+                    <Route path="/account/institution/collection" element={<NftCollection />} />
                 </Routes>
             </Router>
         </AppProvider>

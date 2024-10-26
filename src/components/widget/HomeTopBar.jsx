@@ -38,7 +38,7 @@ const HomeTopBar = () => {
                 
             </Box>
 
-            <Button variant="contained" color="primary" size="large" sx={{paddingY: 1.5}} gap={2} display={'flex'} to="/dashboard" component={Link}>
+            <Button variant="contained" color="primary" size="large" sx={{paddingY: 1.5}} gap={2} display={'flex'} to="/account-selection" component={Link}>
                 DCN Dashboard
                 <ArrowForwardIcon />
             </Button>

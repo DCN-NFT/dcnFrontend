@@ -5,6 +5,7 @@ import Colors from '../utils/Colors';
 import bg2 from '../assets/bg2.png';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import { Link } from 'react-router-dom';
 
 // Dummy NFT data for demonstration purposes
 const nftData = [
@@ -38,7 +39,7 @@ const AdminDashboard = () => {
         <Container>
             <Box sx={{ marginTop: 5 }}>
                 <Grid container spacing={3}>
-                    <Grid item xs={12} md={8}>
+                    <Grid item xs={12} md={9}>
 
                         {/* Create your own NFT card */}
                         <Box    
@@ -55,34 +56,67 @@ const AdminDashboard = () => {
                                 display: 'flex',
                                 justifyContent: 'center',
                             }}>
-                            <Typography variant="h2" sx={{ color: Colors.lighter, fontWeight: 'bold' }}>Create your own NFT</Typography>
-                            <Typography variant="h5" sx={{ color: Colors.lighter }}>Create your own NFTs and manage them with ease.</Typography>
+                            <Typography variant="h4" sx={{ color: Colors.lighter, fontWeight: 'bold' }}>Create your own NFT</Typography>
+                            <Typography variant="h5" sx={{ color: Colors.lighter }}>Create NFT Certificates for candidates</Typography>
                             <Box sx={{ display: 'flex', gap: 2 }}>
                                 <Button variant="contained" color="primary" sx={{ marginTop: 2, paddingY: 1.5, width: 200, fontWeight: 800 }}>Discover Now</Button>
-                                <Button variant="outlined" color="default" sx={{ marginTop: 2, paddingY: 1.5, width: 200, borderColor: 'white', color: 'white', fontWeight: 800 }}>Create Yours</Button>
+                                <Button     
+                                    variant="outlined" 
+                                    color="default" 
+                                    sx={{ marginTop: 2, paddingY: 1.5, width: 200, borderColor: 'white', color: 'white', fontWeight: 800 }} 
+                                    to="create-nft"
+                                    component={Link}
+                                >Create NFT Certs</Button>
                             </Box>
+                            
                         </Box>
 
                         {/* All NFTs section */}
                         <Box sx={{ marginTop: 5 }}>
-                            <Typography variant="h4" sx={{ color: Colors.primary, fontWeight: 'bold' }}>ALL NFTS</Typography>
-
+                            {/* Previous and Next buttons */}
+                            <Box sx={{ display: 'flex', justifyContent: 'space-between', marginTop: 3 }}>
+                                <Typography variant="h6" sx={{ color: Colors.primary, fontWeight: 'bold' }}>ALL NFTS</Typography>
+                                <Box sx={{ display: 'flex', justifyContent: 'space-between', marginTop: 3, gap: 3 }}>
+                                    <Button 
+                                        variant="outlined" 
+                                        color="primary" 
+                                        sx={{ padding: 1, borderRadius: 2 }} 
+                                        onClick={handlePrevious}
+                                        disabled={currentIndex === 0} // Disable when at the first NFT
+                                        startIcon={<ArrowBackIcon />}  // Add left arrow icon
+                                    >
+                                    </Button>
+                                    <Button 
+                                        variant="outlined" 
+                                        color="primary" 
+                                        sx={{ padding: 1, borderRadius: 2 }} 
+                                        onClick={handleNext}
+                                        disabled={currentIndex === nftData.length - 1} // Disable when at the last NFT
+                                        endIcon={<ArrowForwardIcon />}  // Add right arrow icon
+                                    >
+                                    </Button>
+                                </Box>
+                            </Box>
                             {/* NFT cards in a vertically scrollable box */}
                             <Box sx={{ 
                                 maxHeight: 400, 
-                                overflowY: 'auto', 
+                                overflowX: 'scroll', 
                                 marginTop: 2, 
                                 paddingRight: 2, 
                                 display: 'flex', 
-                                flexDirection: 'column', 
-                                gap: 2 
+                                gap: 2,
+                                scrollbarWidth: 'none',
+
                             }}>
                                 {nftData.map((nft, index) => (
                                     <Card key={nft.id} sx={{ 
                                         display: 'flex', 
                                         flexDirection: 'column', 
                                         borderRadius: 2, 
-                                        boxShadow: '0 2px 5px rgba(0,0,0,0.1)' 
+                                        boxShadow: '0 2px 5px rgba(0,0,0,0.1)' ,
+                                        height: 300,
+                                        minWidth: 250
+
                                     }}>
                                         <CardContent>
                                             <Typography variant="h5" sx={{ fontWeight: 'bold' }}>{nft.title}</Typography>
@@ -92,29 +126,7 @@ const AdminDashboard = () => {
                                 ))}
                             </Box>
 
-                            {/* Previous and Next buttons */}
-                            <Box sx={{ display: 'flex', justifyContent: 'space-between', marginTop: 3 }}>
-                                <Button 
-                                    variant="outlined" 
-                                    color="primary" 
-                                    sx={{ padding: 1, borderRadius: 2 }} 
-                                    onClick={handlePrevious}
-                                    disabled={currentIndex === 0} // Disable when at the first NFT
-                                    startIcon={<ArrowBackIcon />}  // Add left arrow icon
-                                >
-                                    Previous
-                                </Button>
-                                <Button 
-                                    variant="outlined" 
-                                    color="primary" 
-                                    sx={{ padding: 1, borderRadius: 2 }} 
-                                    onClick={handleNext}
-                                    disabled={currentIndex === nftData.length - 1} // Disable when at the last NFT
-                                    endIcon={<ArrowForwardIcon />}  // Add right arrow icon
-                                >
-                                    Next
-                                </Button>
-                            </Box>
+                            
                         </Box>
 
                     </Grid>
