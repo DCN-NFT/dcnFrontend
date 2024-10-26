@@ -7,22 +7,22 @@ const WhyChooseUs = () => {
         <Box
             sx={{
                 backgroundColor: 'inherit',
-                maxHeight: '600px',
+                mixHeight: '600px',
                 overflow: 'hidden',
             }}
         >
             <Grid container 
                 sx={{
                     backgroundColor: 'rgba(255, 255, 255, 0.2)',
-                    maxHeight: 'inherit',
                     paddingX:'10%',
-                    // paddingY: '5%',
+                    paddingY: '5%',
+                    
                 }}
             >
-                <Grid item xs={6}> 
+                <Grid item xs={12} sm={12} md={6}> 
                     <img src={whysChooseUsImage} alt="why choose us" style={{ height: '100%', width: '100%' }} />    
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={12} sm={12} md={6} >
                     <Typography variant="h2" sx={{ fontWeight: 'bold', color: 'white', mb: 2 }}>
                         Why Choose Us
                     </Typography>

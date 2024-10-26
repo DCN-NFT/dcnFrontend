@@ -88,14 +88,31 @@ const HomePage = () => {
                 {/* ##########################  Main Content  ########################## */}
                 <Box display={'flex'} justifyContent={'center'} alignItems={'center'} sx={{ height: '80vh' }}>
                     <Grid container spacing={2}>
-                        <Grid item xs={12} sm={6}>
-                            <Typography variant="h1" sx={{ color: 'white', fontWeight: 'bold', marginTop: 5 }}>Step Into Your Digital Future With DCN</Typography>
-                            <Typography variant="h5" sx={{ color: 'white', marginTop: 2 }}>A decentralized network for managing credentials and certificates.</Typography>
+                        <Grid item xs={12} sm={12} md={6}>
+                            <Typography 
+                                variant="h1" 
+                                sx={{ 
+                                    color: 'white', 
+                                    fontWeight: 'bold', 
+                                    marginTop: 5, 
+                                    fontSize: { xs: '2rem', sm: '3rem', md: '6rem' } // Responsive font sizes
+                                }}
+                            >
+                                Step Into Your Digital Future With DCN
+                            </Typography>
+                            <Typography variant="h5" sx={{ color: 'white', marginTop: 2 }}>
+                                A decentralized network for managing credentials and certificates.
+                            </Typography>
 
-                            <Button variant="contained" color="primary" size="large" sx={{ marginTop: 5, width: 300, paddingY: 2, borderRadius: 5 }}>Get Started</Button>
+                            <Button variant="contained" color="primary" size="large" sx={{ marginTop: 5, width: 300, paddingY: 2, borderRadius: 5 }}>
+                                Get Started
+                            </Button>
                         </Grid>
+
+                        <Grid item xs={12} sm={12} md={6}> </Grid>
                     </Grid>
                 </Box>
+
             </Box>
 
             {/* ##########################  Main Content  ########################## */}
