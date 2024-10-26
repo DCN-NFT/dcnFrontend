@@ -2,12 +2,14 @@ import React from 'react';
 import HomeTopBar from '../components/widget/HomeTopBar';
 import WhyChooseUs from '../components/widget/WhyChooseUs';
 import AcademicAchievement from '../components/widget/AcademicAchievement';
+import OurCreators from '../components/widget/OurCreators';
 
 import { Box, Typography, Grid, Button, Paper } from '@mui/material';
 import bgImage from '../assets/bgImage.png'; // Import the background image
 import Colors from '../utils/Colors';
 import Image1 from '../assets/image1.png';
 import { Link } from 'react-router-dom';
+import Footer from '../components/widget/Footer'
 
 const academicAchievements = [  
     {
@@ -112,17 +114,20 @@ const HomePage = () => {
                 }}>
                 <Typography variant="h4" sx={{ color: Colors.light, textAlign: 'center', marginBottom: 20, fontWeight: 'bold' }}>Empowering Students with Credentials</Typography>
                 <Grid container spacing={2}>
-                    <Grid item xs={12} sm={6} justifyContent='center' display='flex' flexDirection='column'>
+                    <Grid item xs={12} sm={12} md={6} justifyContent='center' display='flex' flexDirection='column'>
                         <Typography variant="h3" sx={{ color: 'white', fontWeight: 'bold' }}>Elevate Your Credential Experience with Our Student Dashboard</Typography>
                         <Typography variant="h5" sx={{ color: 'white', marginTop: 2 }}>Manage your NFT-based credentials effortlessly and stay ahead in your academic journey.</Typography>
                         <Button variant="contained" color="primary" size="large" sx={{ marginTop: 5, width: 300, paddingY: 2, borderRadius: 5 }}>Get Started</Button>
                     </Grid>
 
-                    <Grid item xs={12} sm={6}>
+                    <Grid item xs={12} sm={12} md={6}>
                         <img src={Image1} alt="Image1" width="100%" height={600} style={{borderRadius: '30px'}} /> 
                     </Grid>
                 </Grid>
             </Box>
+
+            {/* ##########################  Our Creators  ########################## */}
+            <OurCreators />
 
 
             {/* ###################################################### */}
@@ -137,10 +142,10 @@ const HomePage = () => {
                 <Typography variant="h4" sx={{ color: Colors.light, textAlign: 'center', marginBottom: 20, fontWeight: 'bold' }}>Unlock Your Academic Achievements</Typography>
                 <Grid container spacing={4}>
                     {academicAchievements.map((achievement, index) => (
-                        <Grid item xs={12} sm={6} justifyContent='center' display='flex' flexDirection='column' key={index}>
-                            <Paper elevation={3} sx={{ padding: 2, borderRadius: 5, display: 'flex', flexDirection: 'row', gap: 5 , alignItems: 'center', backgroundColor: Colors.darker, border: '1px solid rgba(255, 255, 255, .5)' }}>
+                        <Grid item xs={12} sm={12} md={6} justifyContent='center' display='flex' flexDirection='column' key={index}>
+                            <Paper elevation={3} sx={{ padding: 2, borderRadius: 5, display: 'flex', flexDirection: 'row', gap: 5 , alignItems: 'center', backgroundColor: 'inherit', border: '1px solid #4a4ab1' }}>
                                 <Box display='flex' justifyContent='center'>
-                                    <Box sx={{ width: 100, height: 100, backgroundColor: Colors.light, borderRadius: 5, display: 'flex', justifyContent: 'center', alignItems: 'center' }}/>
+                                    <Box sx={{ width: 100, height: 100, backgroundColor: '#4a4ab1', borderRadius: 5, display: 'flex', justifyContent: 'center', alignItems: 'center' }}/>
                                 </Box>
                                 <Box>
                                     <Typography variant="h4" sx={{ color: Colors.light, fontWeight: 'bold' }}>{achievement.title}</Typography>
@@ -153,43 +158,14 @@ const HomePage = () => {
                         </Grid>
                     ))}
                 </Grid>
-            </Box>
 
-
-            {/* ###################################################### */}
-            <Box 
-                sx={{ 
-                    backgroundColor: 'inherit',
-                    padding: 5,
-                    paddingX: { xs: 0, sm: 10, md: 35, lg: 35 },
-                    paddingY: { xs: 0, sm: 10, md: 20, lg: 20 }
-                }}>
-                <Typography variant="h6" sx={{ color: Colors.light, textAlign: 'center', fontWeight: 'bold' }}>Your Credentials, Your control</Typography>
-                <Typography variant="h4" sx={{ color: Colors.light, textAlign: 'center', marginBottom: 20, fontWeight: 'bold' }}>Manage Your Achievements Efficiently</Typography>
-                <Grid container spacing={4}>
-                    {AchievementsEfficiently.map((achievement, index) => (
-                        <Grid item xs={12} sm={6} justifyContent='center' display='flex' flexDirection='column' key={index}>
-                             <Paper elevation={3} sx={{ padding: 2, borderRadius: 5, display: 'flex', flexDirection: 'row', gap: 5 , alignItems: 'center', backgroundColor: Colors.darker, border: '1px solid rgba(255, 255, 255, .5)' }}>
-                                <Box display='flex' justifyContent='center'>
-                                    <Box sx={{ width: 100, height: 100, backgroundColor: Colors.light, borderRadius: 5, display: 'flex', justifyContent: 'center', alignItems: 'center' }}/>
-                                </Box>
-                                <Box>
-                                    <Typography variant="h4" sx={{ color: Colors.light, fontWeight: 'bold' }}>{achievement.title}</Typography>
-                                    <Typography variant="body1" sx={{ color: Colors.light, marginTop: 2 }}>{achievement.description}</Typography>
-                                    <Button 
-                                        component={Link}
-                                        color="primary"  sx={{ marginTop: 2, paddingLeft: 0, paddingY: 2, borderRadius: 5, fontWeight: 'bold', fontFamily: 'sans-serif' }} > {achievement.buttonLabel} </Button>
-                                </Box>
-                            </Paper> 
-                        </Grid>
-                    ))}
-                </Grid>
             </Box>
 
             {/* Footer */}
-            <Box sx={{backgroundColor: 'rgba(0, 0, 0, 0.5)', padding: 2, textAlign: 'center' }}>
-                <Typography variant="body1" sx={{ color: 'white' }}>© 2021 DCN. All rights reserved.</Typography>
-            </Box>
+            <Footer />
+
+
+            
 
         </Box>
     );

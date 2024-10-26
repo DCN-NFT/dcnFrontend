@@ -5,6 +5,7 @@
     justify-content: space-between;
     width: 100%;             /* Ensure it takes full width */
     position: relative;      /* Allow absolute positioning of children */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
 }
 
 .timeline-line {
@@ -17,6 +18,7 @@
     left: 50%;
     transform: translateX(-50%);
     z-index: 1;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
 }
 
 .timeline-item {
@@ -26,6 +28,13 @@
     align-items: center;  /* Center align items vertically */
     max-height: 200px;
     position: relative;   /* Allow absolute positioning of children */
+    perspective: 1000px; /* Add perspective for 3D effect */
+}
+
+/* Hover effect */
+.timeline-item:hover .timeline-content {
+    transform: translateY(-10px) rotateY(10deg); /* Move up and rotate */
+    box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.3); /* Enhance shadow on hover */
 }
 
 .timeline-content {
@@ -37,6 +46,8 @@
     border: 1px solid #4a4ab1;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
     z-index: 2;
+    border-right: 2px solid linear-gradient(145deg, #09f5f5, #29295c);
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
 }
 .timeline-dot {
     width: 20px;
@@ -46,6 +57,60 @@
     position: absolute;
     transform: translateY(-50%); /* Center the dot vertically */
     z-index: 1000;
+    transition: transform 0.3s ease; 
+}
+
+/* Optional: Enhance the dot effect on hover */
+.timeline-item:hover .timeline-dot {
+    transform: translateY(-50%) scale(1.5); /* Slightly scale the dot */
+}
+
+/* Before pseudo-element for even timeline items */
+.timeline-item:nth-child(even)::before {
+    content: '';
+    position: absolute;
+    width: 100px;
+    height: 1px;
+    background: linear-gradient(to bottom, #4a4ab1, #1f1f3f); 
+    border-radius: 5px; /* Make it rounded */
+    top: 50%;
+    left: -60px; /* Position it to the left of the timeline dot */
+    transform: translateY(-50%); /* Center it vertically */
+}
+
+.timeline-item:nth-child(odd)::before {
+    content: '';
+    position: absolute;
+    width: 100px;
+    height: 1px;
+    background-color: #4a4ab1;
+    border-radius: 5px; /* Make it rounded */
+    top: 50%;
+    right: -60px; /* Position it to the left of the timeline dot */
+    transform: translateY(-50%); /* Center it vertically */
+}
+
+.timeline-item:nth-child(odd)::after {
+    content: '';
+    position: absolute;
+    width: 100px;
+    height: 135px;
+    border:5px solid #4a4ab1;
+    border-radius: 5px; /* Make it rounded */
+    top: -10;
+    right: -8px; /* Position it to the left of the timeline dot */
+}
+
+
+.timeline-item:nth-child(even)::after {
+    content: '';
+    position: absolute;
+    width: 100px;
+    height: 135px;
+    border:5px solid #4a4ab1;
+    border-radius: 5px; /* Make it rounded */
+    top: -10;
+    left: -8px; /* Position it to the left of the timeline dot */
 }
 
 .timeline-item:nth-child(even) .timeline-dot {
