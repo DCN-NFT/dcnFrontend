@@ -54,7 +54,7 @@ const adminWalletLinks = [
 const NavLinks = ({ isCollapsed }) => {
     const location = useLocation();
     const isActive = (path) => location.pathname === path;
-    const { role } = useAppContext();  // Get user role from context
+    const { role, connectedWallet } = useAppContext();  // Get user role from context
 
     return (
         <Box sx={{ padding: '1rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%' }}>
@@ -207,9 +207,11 @@ const NavLinks = ({ isCollapsed }) => {
                 <Box sx={{ marginBottom: '10px' }}>
                     {!isCollapsed && 
                     <>
-                        <Typography variant="body1" sx={{ color: Colors.primary, fontWeight: 'bold' }}>John Doe</Typography>
+                        <Typography variant="body1" sx={{ color: Colors.primary, fontWeight: 'bold' }}>USERNAME</Typography>
                         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                            <Typography variant="caption" sx={{ color: '#666' }}>ID: <span style={{ color: Colors.primary }}>29029193</span></Typography>
+                            <Typography variant="caption" sx={{ color: '#666' }}>ID: <span style={{ color: Colors.primary }}>
+                            {connectedWallet ? connectedWallet : 'wallet not connected'}    
+                            </span></Typography>
                             <IconButton sx={{ padding: 0 }}>
                                 <ContentCopyIcon sx={{ fontSize: 14, marginLeft: '10px', color: Colors.primary }} />
                             </IconButton>

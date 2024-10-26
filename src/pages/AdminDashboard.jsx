@@ -6,6 +6,7 @@ import bg2 from '../assets/bg2.png';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { Link } from 'react-router-dom';
+import InstitutionProfileCard from '../components/widget/InstitutionProfileCard';
 
 // Dummy NFT data for demonstration purposes
 const nftData = [
@@ -59,7 +60,10 @@ const AdminDashboard = () => {
                             <Typography variant="h4" sx={{ color: Colors.lighter, fontWeight: 'bold' }}>Create your own NFT</Typography>
                             <Typography variant="h5" sx={{ color: Colors.lighter }}>Create NFT Certificates for candidates</Typography>
                             <Box sx={{ display: 'flex', gap: 2 }}>
-                                <Button variant="contained" color="primary" sx={{ marginTop: 2, paddingY: 1.5, width: 200, fontWeight: 800 }}>Discover Now</Button>
+                                <Button variant="contained" color="primary" sx={{ marginTop: 2, paddingY: 1.5, width: 200, fontWeight: 800 }}
+                                    to = "/account/institution/collection"
+                                    component={Link}
+                                >Discover Now</Button>
                                 <Button     
                                     variant="outlined" 
                                     color="default" 
@@ -129,6 +133,11 @@ const AdminDashboard = () => {
                             
                         </Box>
 
+                    </Grid>
+
+                    {/* Institution Profile Card */}
+                    <Grid item xs={12} md={3}>
+                        <InstitutionProfileCard />
                     </Grid>
                 </Grid>
             </Box>

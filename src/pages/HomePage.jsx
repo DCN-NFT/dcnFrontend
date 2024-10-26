@@ -1,5 +1,7 @@
 import React from 'react';
 import HomeTopBar from '../components/widget/HomeTopBar';
+import WhyChooseUs from '../components/widget/WhyChooseUs';
+
 import { Box, Typography, Grid, Button, Paper } from '@mui/material';
 import bgImage from '../assets/bgImage.png'; // Import the background image
 import Colors from '../utils/Colors';
@@ -58,12 +60,12 @@ const HomePage = () => {
         <Box className="home-page" 
             sx={{ 
                 position: 'relative', height: '100vh',
-                background: Colors.black
+                background: '#090c2c'
             }}>
             <Box 
                 className="home-page__bg"
                 sx={{
-                    backgroundImage: `url(${bgImage})`,
+                    // backgroundImage: `url(${bgImage})`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     width: '100%',
@@ -75,7 +77,12 @@ const HomePage = () => {
                     overflow: 'hidden'
                 }}
             >
+
+                {/* ##########################  Top Bar  ########################## */}
                 <HomeTopBar />
+
+
+                {/* ##########################  Main Content  ########################## */}
                 <Box display={'flex'} justifyContent={'center'} alignItems={'center'} sx={{ height: '80vh' }}>
                     <Grid container spacing={2}>
                         <Grid item xs={12} sm={6}>
@@ -88,10 +95,13 @@ const HomePage = () => {
                 </Box>
             </Box>
 
+            {/* ##########################  Main Content  ########################## */}
+            <WhyChooseUs />
+
             {/* empowering students */}
             <Box 
                 sx={{ 
-                    backgroundColor: Colors.black, 
+                    backgroundColor: 'inherit',
                     padding: 5,
                     paddingX: { xs: 0, sm: 10, md: 35, lg: 35 },
                     paddingY: { xs: 0, sm: 10, md: 20, lg: 20 }
@@ -114,7 +124,7 @@ const HomePage = () => {
             {/* ###################################################### */}
             <Box 
                 sx={{ 
-                    backgroundColor: 'black', 
+                    backgroundColor: 'inherit',
                     padding: 5,
                     paddingX: { xs: 0, sm: 10, md: 35, lg: 35 },
                     paddingY: { xs: 0, sm: 10, md: 20, lg: 20 }
@@ -145,7 +155,7 @@ const HomePage = () => {
             {/* ###################################################### */}
             <Box 
                 sx={{ 
-                    backgroundColor: 'black', 
+                    backgroundColor: 'inherit',
                     padding: 5,
                     paddingX: { xs: 0, sm: 10, md: 35, lg: 35 },
                     paddingY: { xs: 0, sm: 10, md: 20, lg: 20 }
