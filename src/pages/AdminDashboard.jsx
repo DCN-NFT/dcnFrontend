@@ -1,21 +1,24 @@
 import React, { useState } from 'react';
 import Container from '../components/widget/Container';
-import { Grid, Typography, Box, Button, Card, CardContent } from '@mui/material';
+import { Grid, Typography, Box, Button, Card, CardContent, IconButton, Paper, Tooltip } from '@mui/material';
 import Colors from '../utils/Colors';
 import bg2 from '../assets/bg2.png';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { Link } from 'react-router-dom';
 import InstitutionProfileCard from '../components/widget/InstitutionProfileCard';
+import CertificateCard from '../components/widget/CertificateCard';
 
+// icon of mu/icons
+import MoreVert from '@mui/icons-material/MoreVert';
 // Dummy NFT data for demonstration purposes
 const nftData = [
-    { id: 1, title: 'NFT 1', description: 'Description of NFT 1' },
-    { id: 2, title: 'NFT 2', description: 'Description of NFT 2' },
-    { id: 3, title: 'NFT 3', description: 'Description of NFT 3' },
-    { id: 4, title: 'NFT 4', description: 'Description of NFT 4' },
-    { id: 5, title: 'NFT 5', description: 'Description of NFT 5' },
-    { id: 6, title: 'NFT 6', description: 'Description of NFT 6' },
+    { id: 1, title: 'Username 1', description: 'Description of Username 1' },
+    { id: 2, title: 'Username 2', description: 'Description of Username 2' },
+    { id: 3, title: 'Username 3', description: 'Description of Username 3' },
+    { id: 4, title: 'Username 4', description: 'Description of Username 4' },
+    { id: 5, title: 'Username 5', description: 'Description of Username 5' },
+    { id: 6, title: 'Username 6', description: 'Description of NFT 6' },
     // Add more NFTs if needed
 ];
 
@@ -39,8 +42,28 @@ const AdminDashboard = () => {
     return (
         <Container>
             <Box sx={{ marginTop: 5 }}>
-                <Grid container spacing={3}>
-                    <Grid item xs={12} md={9}>
+                {/* Institution Profile Card */}
+                <Grid container spacing={3}
+                    sx={{
+                        maxHeight: '90vh',
+                        minHeight: 500,
+                        overflowY: 'scroll',
+                        scrollbarWidth: 'none',
+                    }}>
+
+                    <Grid item xs={12} md={3} 
+                        sx={{
+                            height: '90vh',
+                            overflowY: 'hidden',
+                        }}>
+                        <InstitutionProfileCard />
+                    </Grid>
+                    <Grid item xs={12} md={9}
+                        sx={{
+                            minHeight: 'inherit',
+                            overflowY: 'scroll',
+                        }}
+                    >
 
                         {/* Create your own NFT card */}
                         <Box    
@@ -58,7 +81,7 @@ const AdminDashboard = () => {
                                 justifyContent: 'center',
                             }}>
                             <Typography variant="h4" sx={{ color: Colors.lighter, fontWeight: 'bold' }}>Create your own NFT</Typography>
-                            <Typography variant="h5" sx={{ color: Colors.lighter }}>Create NFT Certificates for candidates</Typography>
+                            <Typography variant="h6" sx={{ color: Colors.lighter }}>Create NFT Certificates for candidates</Typography>
                             <Box sx={{ display: 'flex', gap: 2 }}>
                                 <Button variant="contained" color="primary" sx={{ marginTop: 2, paddingY: 1.5, width: 200, fontWeight: 800 }}
                                     to = "/account/institution/collection"
@@ -76,9 +99,9 @@ const AdminDashboard = () => {
                         </Box>
 
                         {/* All NFTs section */}
-                        <Box sx={{ marginTop: 5 }}>
+                        <Box sx={{ marginTop: 2 }}>
                             {/* Previous and Next buttons */}
-                            <Box sx={{ display: 'flex', justifyContent: 'space-between', marginTop: 3 }}>
+                            <Box sx={{ display: 'flex', justifyContent: 'space-between', marginTop: 1, alignItems: 'center' }}> 
                                 <Typography variant="h6" sx={{ color: Colors.primary, fontWeight: 'bold' }}>ALL NFTS</Typography>
                                 <Box sx={{ display: 'flex', justifyContent: 'space-between', marginTop: 3, gap: 3 }}>
                                     <Button 
@@ -103,9 +126,10 @@ const AdminDashboard = () => {
                             </Box>
                             {/* NFT cards in a vertically scrollable box */}
                             <Box sx={{ 
-                                maxHeight: 400, 
+                                maxHeight: 500,
+                                minHeight: 500, 
                                 overflowX: 'scroll', 
-                                marginTop: 2, 
+                                marginTop: 1, 
                                 paddingRight: 2, 
                                 display: 'flex', 
                                 gap: 2,
@@ -113,31 +137,13 @@ const AdminDashboard = () => {
 
                             }}>
                                 {nftData.map((nft, index) => (
-                                    <Card key={nft.id} sx={{ 
-                                        display: 'flex', 
-                                        flexDirection: 'column', 
-                                        borderRadius: 2, 
-                                        boxShadow: '0 2px 5px rgba(0,0,0,0.1)' ,
-                                        height: 300,
-                                        minWidth: 250
-
-                                    }}>
-                                        <CardContent>
-                                            <Typography variant="h5" sx={{ fontWeight: 'bold' }}>{nft.title}</Typography>
-                                            <Typography variant="body2" sx={{ color: Colors.dark }}>{nft.description}</Typography>
-                                        </CardContent>
-                                    </Card>
+                                    <CertificateCard key={index} nft={nft} />
                                 ))}
                             </Box>
 
                             
                         </Box>
 
-                    </Grid>
-
-                    {/* Institution Profile Card */}
-                    <Grid item xs={12} md={3}>
-                        <InstitutionProfileCard />
                     </Grid>
                 </Grid>
             </Box>

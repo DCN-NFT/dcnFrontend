@@ -5,7 +5,7 @@ import { useCallback } from 'react';
 import { useAppContext } from '../context/AppProvider';
 
 const AccountSelectionPage = () => {
-    const { role, setRole } = useAppContext();  // Get user role from context
+    const { role, setRole, handleRole } = useAppContext();  // Get user role from context
     const navigate = useNavigate();
 
     // Initialize particles
@@ -16,6 +16,7 @@ const AccountSelectionPage = () => {
     // Handle account selection
     const handleSelectAccount = (accountType) => {
         setRole(accountType.toLowerCase()); // Update user role in context
+        handleRole(accountType.toLowerCase()); // Update user role in local storage
         navigate(`/account/${accountType.toLowerCase()}`); // Adjust route as needed
     };
 

@@ -16,6 +16,19 @@ export const AppProvider = ({ children }) => {
     const [isCollapsed, setIsCollapsed] = useState(false); // State to control sidebar collapse
     const [role, setRole ] = useState('student'); 
     
+    React.useEffect(() => {
+        if (localStorage.getItem('role')) {
+            setRole(localStorage.getItem('role'));
+        }
+    }, [role]);
+
+
+    // store the role in local storage
+    const handleRole = (role) => {
+        localStorage.setItem('role', role);
+        setRole(role);  
+    }
+    
     const value = {
         connectedWallet,
         setConnectedWallet,
@@ -24,7 +37,8 @@ export const AppProvider = ({ children }) => {
         isCollapsed,
         setIsCollapsed, // Expose setIsCollapsed to update the sidebar collapse state
         role,
-        setRole
+        setRole,
+        handleRole
     };
 
     return (

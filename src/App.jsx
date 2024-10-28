@@ -14,6 +14,7 @@ import AdminDashboard from './pages/AdminDashboard';
 import CreateNft from './pages/CreateNft';
 import NftCollection from './pages/NftCollection';
 import AccountSelectionPage from './pages/AccountSelectionPage';
+import WalletAccountInsPage from './pages/WalletAccountInsPage';
 
 const App = () => {
     return (
@@ -36,7 +37,7 @@ const App = () => {
                     <Route path="/account/institution" element={<AdminDashboard />} />
                     <Route path="/account/institution/dashboard" element={<AdminDashboard />} />
                     <Route path="/account/institution/create-nft" element={<CreateNft />} />
-                    <Route path="/account/institution/collection" element={<NftCollection />} />
+                    <Route path="/account/institution/wallets" element={<WalletAccountInsPage />} />
                 </Routes>
             </Router>
         </AppProvider>
