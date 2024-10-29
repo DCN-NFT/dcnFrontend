@@ -120,7 +120,8 @@ const DashboardPage = () => {
                                     justifyContent: 'center',
                                     alignItems: 'center'
                                 }}>
-                                    {/* <QRCodeComponent value={qrValue} /> */}
+                                    <img src="https://pngimg.com/uploads/qr_code/qr_code_PNG10.png" alt="" 
+                                        style={{ width: 150, objectFit: 'cover', borderRadius: 5 }} />
                                 </Box>
                             </Grid>
                         </Grid>

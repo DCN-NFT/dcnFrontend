@@ -2,13 +2,27 @@ import { Box, Typography, TextField, Button } from '@mui/material';
 import Colors from '../../utils/Colors';
 import React, { useState } from 'react';
 import { useAppContext } from '../../context/AppProvider';
+import institutionDemoData from '../DemoData/demoData'; // Adjust the path as necessary
 
 const ProfileSettings = () => {
     const { connectedWallet } = useAppContext();
 
-    // States to store selected images
+    // States to store selected images and institution details
     const [profilePicture, setProfilePicture] = useState(null);
     const [bannerImage, setBannerImage] = useState(null);
+    
+    // States for institution details
+    const [institutionDetails, setInstitutionDetails] = useState({
+        name: institutionDemoData.name,
+        establishedYear: institutionDemoData.establishedYear,
+        contactEmail: institutionDemoData.contactEmail,
+        phoneNumber: institutionDemoData.phoneNumber,
+        address: institutionDemoData.address,
+        website: institutionDemoData.website,
+        affiliations: institutionDemoData.affiliations,
+        about: institutionDemoData.about,
+        socialMedia: institutionDemoData.socialMedia
+    });
 
     // Handlers for uploading and previewing images
     const handleProfilePictureChange = (event) => {
@@ -25,13 +39,38 @@ const ProfileSettings = () => {
         }
     };
 
+    // Handler for input changes
+    const handleInputChange = (event) => {
+        const { name, value } = event.target;
+        setInstitutionDetails(prevDetails => ({
+            ...prevDetails,
+            [name]: value
+        }));
+    };
+
+    // Handler for saving changes
+    const handleSaveChanges = () => {
+        // Update the demo data with current state
+        institutionDemoData.name = institutionDetails.name;
+        institutionDemoData.establishedYear = institutionDetails.establishedYear;
+        institutionDemoData.contactEmail = institutionDetails.contactEmail;
+        institutionDemoData.phoneNumber = institutionDetails.phoneNumber;
+        institutionDemoData.address = institutionDetails.address;
+        institutionDemoData.website = institutionDetails.website;
+        institutionDemoData.affiliations = institutionDetails.affiliations;
+        institutionDemoData.about = institutionDetails.about;
+        institutionDemoData.socialMedia = institutionDetails.socialMedia;
+
+        // You can also implement any additional logic after saving
+        console.log('Institution details updated:', institutionDemoData);
+    };
+
     return (
         <Box padding={3}>
             <Typography variant="h4" sx={{ fontWeight: 'bold', color: Colors.darker }}> Profile details </Typography>
 
             <Box display={{ xs: 'block', md: 'flex' }} sx={{ marginTop: 2 }}>
                 <Box>
-
                     {/* Username */}
                     <Box sx={{ marginTop: 2 }}>
                         <Typography variant="h6" sx={{ color: Colors.darker }}> Username </Typography>
@@ -42,25 +81,103 @@ const ProfileSettings = () => {
                         />
                     </Box>
 
-                    {/* Bio */}
+                    {/* Institution Name */}
                     <Box sx={{ marginTop: 2 }}>
-                        <Typography variant="h6" sx={{ color: Colors.darker }}> Bio </Typography>
+                        <Typography variant="h6" sx={{ color: Colors.darker }}> Institution Name </Typography>
                         <TextField
-                            label="Tell the world about yourself"
+                            name="name"
+                            value={institutionDetails.name}
+                            onChange={handleInputChange}
+                            variant="outlined"
+                            sx={{ marginTop: 2, width: 400 }}
+                        />
+                    </Box>
+
+                    {/* Established Year */}
+                    <Box sx={{ marginTop: 2 }}>
+                        <Typography variant="h6" sx={{ color: Colors.darker }}> Established Year </Typography>
+                        <TextField
+                            name="establishedYear"
+                            value={institutionDetails.establishedYear}
+                            onChange={handleInputChange}
+                            variant="outlined"
+                            sx={{ marginTop: 2, width: 400 }}
+                        />
+                    </Box>
+
+                    {/* Contact Email */}
+                    <Box sx={{ marginTop: 2 }}>
+                        <Typography variant="h6" sx={{ color: Colors.darker }}> Contact Email </Typography>
+                        <TextField
+                            name="contactEmail"
+                            value={institutionDetails.contactEmail}
+                            onChange={handleInputChange}
+                            variant="outlined"
+                            sx={{ marginTop: 2, width: 400 }}
+                        />
+                    </Box>
+
+                    {/* Phone Number */}
+                    <Box sx={{ marginTop: 2 }}>
+                        <Typography variant="h6" sx={{ color: Colors.darker }}> Phone Number </Typography>
+                        <TextField
+                            name="phoneNumber"
+                            value={institutionDetails.phoneNumber}
+                            onChange={handleInputChange}
+                            variant="outlined"
+                            sx={{ marginTop: 2, width: 400 }}
+                        />
+                    </Box>
+
+                    {/* Address */}
+                    <Box sx={{ marginTop: 2 }}>
+                        <Typography variant="h6" sx={{ color: Colors.darker }}> Address </Typography>
+                        <TextField
+                            name="address"
+                            value={institutionDetails.address}
+                            onChange={handleInputChange}
+                            variant="outlined"
+                            sx={{ marginTop: 2, width: 400 }}
+                        />
+                    </Box>
+
+                    {/* Website */}
+                    <Box sx={{ marginTop: 2 }}>
+                        <Typography variant="h6" sx={{ color: Colors.darker }}> Website </Typography>
+                        <TextField
+                            name="website"
+                            value={institutionDetails.website}
+                            onChange={handleInputChange}
+                            variant="outlined"
+                            sx={{ marginTop: 2, width: 400 }}
+                        />
+                    </Box>
+
+                    {/* Affiliations */}
+                    <Box sx={{ marginTop: 2 }}>
+                        <Typography variant="h6" sx={{ color: Colors.darker }}> Affiliations </Typography>
+                        <TextField
+                            name="affiliations"
+                            value={institutionDetails.affiliations}
+                            onChange={handleInputChange}
+                            variant="outlined"
+                            sx={{ marginTop: 2, width: 400 }}
+                            multiline
+                            rows={2}
+                        />
+                    </Box>
+
+                    {/* About */}
+                    <Box sx={{ marginTop: 2 }}>
+                        <Typography variant="h6" sx={{ color: Colors.darker }}> About </Typography>
+                        <TextField
+                            name="about"
+                            value={institutionDetails.about}
+                            onChange={handleInputChange}
                             variant="outlined"
                             sx={{ marginTop: 2, width: 400 }}
                             multiline
                             rows={4}
-                        />
-                    </Box>
-
-                    {/* Email */}
-                    <Box sx={{ marginTop: 2 }}>
-                        <Typography variant="h6" sx={{ color: Colors.darker }}> Email </Typography>
-                        <TextField
-                            label="Enter Email"
-                            variant="outlined"
-                            sx={{ marginTop: 2, width: 400 }}
                         />
                     </Box>
 
@@ -86,7 +203,12 @@ const ProfileSettings = () => {
                             </Typography>
                         </Box>
 
-                        <Button variant="contained" color="primary" sx={{ marginTop: 2, paddingX: 10, paddingY: 2 }}>
+                        <Button 
+                            variant="contained" 
+                            color="primary" 
+                            sx={{ marginTop: 2, paddingX: 10, paddingY: 2 }}
+                            onClick={handleSaveChanges} // Add the click handler
+                        >
                             Save changes
                         </Button>
                     </Box>
@@ -149,7 +271,7 @@ const ProfileSettings = () => {
                 </Box>
             </Box>
         </Box>
-    )
-}
+    );
+};
 
 export default ProfileSettings;

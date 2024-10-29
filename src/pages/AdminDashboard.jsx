@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Container from '../components/widget/Container';
 import { Grid, Typography, Box, Button, Card, CardContent, IconButton, Paper, Tooltip } from '@mui/material';
 import Colors from '../utils/Colors';
@@ -8,22 +8,33 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { Link } from 'react-router-dom';
 import InstitutionProfileCard from '../components/widget/InstitutionProfileCard';
 import CertificateCard from '../components/widget/CertificateCard';
-
 // icon of mu/icons
 import MoreVert from '@mui/icons-material/MoreVert';
-// Dummy NFT data for demonstration purposes
-const nftData = [
-    { id: 1, title: 'Username 1', description: 'Description of Username 1' },
-    { id: 2, title: 'Username 2', description: 'Description of Username 2' },
-    { id: 3, title: 'Username 3', description: 'Description of Username 3' },
-    { id: 4, title: 'Username 4', description: 'Description of Username 4' },
-    { id: 5, title: 'Username 5', description: 'Description of Username 5' },
-    { id: 6, title: 'Username 6', description: 'Description of NFT 6' },
-    // Add more NFTs if needed
-];
+// // Dummy NFT data for demonstration purposes
+// const nftData = [
+//     { id: 1, title: 'Username 1', description: 'Description of Username 1' },
+//     { id: 2, title: 'Username 2', description: 'Description of Username 2' },
+//     { id: 3, title: 'Username 3', description: 'Description of Username 3' },
+//     { id: 4, title: 'Username 4', description: 'Description of Username 4' },
+//     { id: 5, title: 'Username 5', description: 'Description of Username 5' },
+//     { id: 6, title: 'Username 6', description: 'Description of NFT 6' },
+//     // Add more NFTs if needed
+// ];
 
 const AdminDashboard = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [nftData, setNftData] = useState([{ id: 1, title: 'Username 1', description: 'Description of Username 1' }]);
+
+    useEffect(() => {
+        const handleFetchNftData = async () => {
+            // fetch from local storage
+            const nftData = JSON.parse(localStorage.getItem('contracts'));
+            setNftData(nftData);
+            console.log(nftData);
+        };
+
+        handleFetchNftData();
+    }, []);
 
     // Handle Previous button click
     const handlePrevious = () => {
@@ -136,9 +147,14 @@ const AdminDashboard = () => {
                                 scrollbarWidth: 'none',
 
                             }}>
-                                {nftData.map((nft, index) => (
-                                    <CertificateCard key={index} nft={nft} />
-                                ))}
+                                {nftData.length > 0 ? (
+                                    nftData.map((nft, index) => (
+                                        <CertificateCard key={index} nft={nft} />
+                                    ))
+                                ) : (
+                                    <Typography variant="h6" sx={{ color: Colors.light }}>No NFTs found</Typography>
+                                )}
+                                
                             </Box>
 
                             

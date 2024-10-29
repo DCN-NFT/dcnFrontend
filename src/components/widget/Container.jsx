@@ -8,11 +8,13 @@ import ConnectedWalletWidget from '../ui/ConnectedWalletWidget';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
+import NotificationDrawer from './NotificationDrawer';
 
 const Container = ({ children }) => {
     const [openAddWallet, setOpenAddWallet] = useState(false);
     const [darkMode, setDarkMode] = useState(false); // State for dark/light mode
     const { connectedWallet, setConnectedWallet, isCollapsed } = useAppContext(); // Access context
+    const [drawerOpen, setDrawerOpen] = useState(false);
 
     const handleAddWalletOpen = () => {
         setOpenAddWallet(true);
@@ -30,6 +32,11 @@ const Container = ({ children }) => {
     const handleThemeToggle = () => {
         setDarkMode((prevMode) => !prevMode);
     };
+
+    const toggleDrawer = () => {
+        setDrawerOpen(!drawerOpen);
+    };
+
 
     return (
         <Box sx={{ backgroundColor: darkMode ? Colors.dark : Colors.softWhite, minHeight: '100vh', display: 'flex' }}>
@@ -52,7 +59,9 @@ const Container = ({ children }) => {
                     </Box>
                     <Box sx={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
                         {/* Notification icon with badge */}
-                        <IconButton>
+                        <IconButton
+                            onClick={toggleDrawer}
+                            sx={{ color: darkMode ? Colors.light : Colors.dark,}}>
                             <Badge badgeContent={3} color="secondary"> {/* Display badge count */}
                                 <NotificationsIcon fontSize="large" sx={{color: darkMode ? Colors.light : Colors.dark,}}/>
                             </Badge>
@@ -91,6 +100,7 @@ const Container = ({ children }) => {
                 {children}
                 
                 <AddWallet open={openAddWallet} onClose={handleAddWalletClose} />
+                <NotificationDrawer open={drawerOpen} onClose={toggleDrawer} />
             </Box>
         </Box>
     );

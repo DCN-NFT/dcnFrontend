@@ -1,17 +1,78 @@
 import React, { useState } from 'react';
 import { Box, Card, Typography, TextField, Button, Grid, Paper, Drawer, IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
+import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 
 const CreateContractWidget = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+    const [file, setFile] = useState(null);
+    const [contractName, setContractName] = useState('');
+    const [walletAddress, setWalletAddress] = useState('');
+    const [tokenSymbol, setTokenSymbol] = useState('CRT');
+    const [previewUrl, setPreviewUrl] = useState(null);
 
     const toggleSidebar = () => {
         setIsSidebarOpen(!isSidebarOpen);
     };
 
+    const handleFileChange = (event) => {
+        const selectedFile = event.target.files[0];
+        if (selectedFile) {
+            setFile(selectedFile);
+            const fileUrl = URL.createObjectURL(selectedFile);
+            setPreviewUrl(fileUrl);
+        }
+    };
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+    
+        const generateCertID = () => {
+            const prefix = "0#CRT";
+            const randomString = Array.from({ length: 10 }, () =>
+                String.fromCharCode(65 + Math.floor(Math.random() * 26))
+            ).join(""); // Generates a 10-character random uppercase alphabet string
+            return `${prefix}${randomString}`;
+        };
+        
+        // Create the contract data object
+        const contractData = {
+            CertID: generateCertID(),
+            contractName,
+            walletAddress,
+            tokenSymbol,
+            logoImage: file ? file.name : null,
+            createdOn: new Date().toISOString(),
+        };
+    
+        // Retrieve existing data from localStorage
+        const existingContracts = JSON.parse(localStorage.getItem("contracts")) || [];
+        
+        // Append new contract data to the existing array
+        existingContracts.push(contractData);
+        
+        // Save the updated array back to localStorage
+        localStorage.setItem("contracts", JSON.stringify(existingContracts));
+    
+        // Optional: Alert the user or log the action
+        alert("Contract created and saved!");
+        
+        // Create a Blob from the JSON string and trigger a download (optional)
+        const jsonString = JSON.stringify(contractData, null, 2);
+        const blob = new Blob([jsonString], { type: "application/json" });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = `${contractName || 'contract'}.json`;
+        link.click();
+    };
+    
+    
+
     return (
         <>
             <Card
+                component="form"
+                onSubmit={handleSubmit}
                 sx={{
                     p: 6,
                     maxWidth: 900,
@@ -37,9 +98,8 @@ const CreateContractWidget = () => {
                 </Typography>
 
                 <Grid container spacing={4}>
-                    {/* Logo Image Upload */}
                     <Grid item xs={12} md={6}>
-                        <Box sx={{ mt: 2, mb: 2 }}>
+                    <Box sx={{ mt: 2, mb: 2 }}>
                             <Typography variant="body1" gutterBottom sx={{ fontWeight: '500' }}>
                                 Logo image
                             </Typography>
@@ -57,16 +117,28 @@ const CreateContractWidget = () => {
                                     '&:hover': { backgroundColor: '#e3f2fd' },
                                 }}
                             >
-                                Drag and drop or click to upload
-                                <input type="file" hidden />
+                                {previewUrl ? (
+                                    file?.type.startsWith('image/') ? (
+                                        <img src={previewUrl} alt="Preview" style={{ maxWidth: '100%', maxHeight: '100%' }} />
+                                    ) : (
+                                        <Box sx={{ textAlign: 'center' }}>
+                                            <PictureAsPdfIcon sx={{ fontSize: 50, color: '#d32f2f' }} />
+                                            <Typography variant="caption" color="textSecondary">
+                                                {file.name}
+                                            </Typography>
+                                        </Box>
+                                    )
+                                ) : (
+                                    "Drag and drop or click to upload"
+                                )}
+                                <input type="file" hidden onChange={handleFileChange} />
                             </Button>
                             <Typography variant="caption" color="textSecondary">
-                                Recommended size: 350 x 350. File types: JPG, PNG, SVG, or GIF
+                                Recommended size: 350 x 350. File types: JPG, PNG, SVG, GIF, or PDF
                             </Typography>
                         </Box>
                     </Grid>
 
-                    {/* Contract Name Field */}
                     <Grid item xs={12} md={6}>
                         <Box sx={{ mt: 2, mb: 2 }}>
                             <Typography variant="body1" gutterBottom sx={{ fontWeight: '500' }}>
@@ -76,6 +148,8 @@ const CreateContractWidget = () => {
                                 fullWidth
                                 label="Contract name"
                                 variant="outlined"
+                                value={contractName}
+                                onChange={(e) => setContractName(e.target.value)}
                                 InputLabelProps={{ style: { color: '#666' } }}
                                 sx={{
                                     input: { color: '#333' },
@@ -87,7 +161,6 @@ const CreateContractWidget = () => {
                             />
                         </Box>
 
-                        {/* Wallet Address Input */}
                         <Box sx={{ mt: 2, mb: 2 }}>
                             <Typography variant="body1" gutterBottom sx={{ fontWeight: '500' }}>
                                 Wallet address to send contract
@@ -96,6 +169,8 @@ const CreateContractWidget = () => {
                                 fullWidth
                                 label="Wallet Address"
                                 variant="outlined"
+                                value={walletAddress}
+                                onChange={(e) => setWalletAddress(e.target.value)}
                                 InputLabelProps={{ style: { color: '#666' } }}
                                 sx={{
                                     input: { color: '#333' },
@@ -108,14 +183,14 @@ const CreateContractWidget = () => {
                         </Box>
                     </Grid>
 
-                    {/* Token Symbol Field */}
                     <Grid item xs={12} md={6}>
                         <Box sx={{ mt: 2, mb: 2 }}>
                             <TextField
                                 fullWidth
                                 label="Token symbol"
                                 variant="outlined"
-                                defaultValue="MCN"
+                                value={tokenSymbol}
+                                onChange={(e) => setTokenSymbol(e.target.value)}
                                 InputLabelProps={{ style: { color: '#666' } }}
                                 sx={{
                                     input: { color: '#333' },
@@ -127,7 +202,6 @@ const CreateContractWidget = () => {
                             />
                         </Box>
 
-                        {/* Additional Info Section */}
                         <Box sx={{ mt: 6 }}>
                             <Typography variant="h6" gutterBottom sx={{ color: '#1a237e', fontWeight: 'bold' }}>
                                 After you deploy your contract you'll be able to:
@@ -147,7 +221,6 @@ const CreateContractWidget = () => {
                         </Box>
                     </Grid>
 
-                    {/* Blockchain Selection */}
                     <Grid item xs={12} md={6}>
                         <Box sx={{ mt: 2 }}>
                             <Typography variant="body1" gutterBottom sx={{ fontWeight: '500' }}>
@@ -185,41 +258,33 @@ const CreateContractWidget = () => {
                             >
                                 Base <br />
                                 <Typography variant="caption" color="inherit">
-                                    Estimated cost: $0.01
+                                    Estimated cost to deploy: $1.00
                                 </Typography>
                             </Paper>
-
-                            <Typography variant="caption" color="textSecondary" sx={{ mt: 2 }}>
-                                Select the blockchain you want to deploy your contract on.
-                            </Typography>
                         </Box>
                     </Grid>
                 </Grid>
+
+                <Button
+                    variant="contained"
+                    type="submit"
+                    sx={{ mt: 4, backgroundColor: '#1976d2', color: '#fff' }}
+                >
+                    Create Contract
+                </Button>
             </Card>
 
-            {/* Sidebar for Contract Information */}
             <Drawer anchor="right" open={isSidebarOpen} onClose={toggleSidebar}>
-                <Box
-                    sx={{
-                        width: 300,
-                        p: 3,
-                        backgroundColor: '#f5f5f5',
-                        height: '100%',
-                        color: '#333',
-                    }}
-                >
-                    <IconButton onClick={toggleSidebar} sx={{ position: 'absolute', right: 16, top: 16 }}>
+                <Box sx={{ width: 300, padding: 2 }}>
+                    <IconButton onClick={toggleSidebar} sx={{ float: 'right' }}>
                         <CloseIcon />
                     </IconButton>
-                    <Typography variant="h5" sx={{ color: '#1a237e', fontWeight: 'bold', mb: 2 }}>
+                    <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
                         What is a contract?
                     </Typography>
-                    <Typography variant="body2" sx={{ color: '#333' }}>
-                        A contract is a set of code deployed onto the blockchain that dictates how tokens can be
-                        transferred, minted, or burned. Smart contracts are self-executing agreements coded on the
-                        blockchain that allow for transparency, immutability, and security. By deploying an ERC-721
-                        contract, you create a unique, non-fungible token (NFT) collection that can be minted and
-                        traded.
+                    <Typography variant="body2" color="textSecondary">
+                        A contract is a digital agreement that defines the terms and conditions of a transaction.
+                        In the context of NFTs, it specifies how the token behaves and interacts with users and the blockchain.
                     </Typography>
                 </Box>
             </Drawer>

@@ -1,63 +1,83 @@
 import React, { useState } from 'react';
-import { Box, Typography, Button, IconButton, Drawer } from '@mui/material';
+import { Box, Typography, Button, IconButton, Drawer, Menu, MenuItem } from '@mui/material';
 import { Link } from 'react-router-dom';
 import dcnlogo from '../../assets/dcnlogo.png';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import MenuIcon from '@mui/icons-material/Menu'; // Icon for the sidebar toggle
+import MenuIcon from '@mui/icons-material/Menu'; 
+import { useNavigate } from 'react-router-dom';
+import { useAppContext } from '../../context/AppProvider';
 
 const HomeTopBar = () => {
-    const [isOpen, setIsOpen] = useState(false); // State to control sidebar open/close
+    const [isOpen, setIsOpen] = useState(false); 
+    const { role, setRole, handleRole } = useAppContext();
+    const navigate = useNavigate();
+    const [anchorEl, setAnchorEl] = useState(null); 
 
     const toggleDrawer = (open) => () => {
         setIsOpen(open);
     };
 
+    const handleMenuClick = (event) => {
+        setAnchorEl(event.currentTarget); 
+    };
+
+    const handleMenuClose = (item) => {
+        handleRole(item);
+        setAnchorEl(null);
+    };
+
     const menuItems = (
         <Box
-            sx={{ width: 250, padding: 2 }}
+            sx={{
+                width: 250,
+                padding: 2,
+                backgroundColor: '#f4f4f4',
+                color: 'black',
+            }}
             role="presentation"
             onClick={toggleDrawer(false)}
             onKeyDown={toggleDrawer(false)}
         >
-            <Typography variant="h6" sx={{ color: 'black', fontWeight: 'bold' }}>Menu</Typography>
+            <Typography variant="h6" sx={{ fontWeight: 'bold', marginBottom: 2 }}>Menu</Typography>
             <Link to="/nft" style={{ textDecoration: 'none' }}>
-                <Typography variant="body1" sx={{ color: 'black', marginY: 1 }}>NFT</Typography>
+                <Typography variant="body1" sx={{ marginY: 1, color: '#333', fontWeight: 'medium' }}>NFT</Typography>
             </Link>
             <Link to="/docs" style={{ textDecoration: 'none' }}>
-                <Typography variant="body1" sx={{ color: 'black', marginY: 1 }}>Docs</Typography>
+                <Typography variant="body1" sx={{ marginY: 1, color: '#333', fontWeight: 'medium' }}>Docs</Typography>
             </Link>
             <Link to="/wallet" style={{ textDecoration: 'none' }}>
-                <Typography variant="body1" sx={{ color: 'black', marginY: 1 }}>My Wallet</Typography>
+                <Typography variant="body1" sx={{ marginY: 1, color: '#333', fontWeight: 'medium' }}>My Wallet</Typography>
             </Link>
             <Link to="/pricing" style={{ textDecoration: 'none' }}>
-                <Typography variant="body1" sx={{ color: 'black', marginY: 1 }}>Pricing</Typography>
+                <Typography variant="body1" sx={{ marginY: 1, color: '#333', fontWeight: 'medium' }}>Pricing</Typography>
             </Link>
-
-            {/* Add the DCN Dashboard Button in the sidebar */}
             <Button 
                 variant="outlined" 
                 color="primary" 
                 size="large" 
-                gap={2} 
                 to="/account-selection" 
                 component={Link}
-                sx={{ borderRadius: 5, paddingY: 1.5, marginTop: 2 }} // Margin for spacing
+                sx={{
+                    borderRadius: 5,
+                    paddingY: 1.5,
+                    marginTop: 2,
+                    width: '100%',
+                }}
             >
                 DCN Dashboard
-                <ArrowForwardIcon />
+                <ArrowForwardIcon sx={{ marginLeft: 1 }} />
             </Button>
         </Box>
     );
 
     return (
         <Box 
-            display={'flex'} 
-            justifyContent={'space-between'} 
-            alignItems={'center'} 
-            className="home-top-bar" 
-            sx={{ padding: 2 }}
+            display="flex" 
+            justifyContent="space-between" 
+            alignItems="center" 
+            sx={{ }}
         >
-            <Box display={'flex'} alignItems={'center'} className="home-top-bar__left__item">
+            <Box display="flex" alignItems="center">
                 <Link to="/">
                     <img src={dcnlogo} alt="DCN Logo" width={80} />
                 </Link>
@@ -66,7 +86,6 @@ const HomeTopBar = () => {
                 </Typography>
             </Box>
 
-            {/* For small screens: Sidebar toggle button */}
             <IconButton 
                 sx={{ display: { xs: 'block', md: 'none' }, color: 'white' }} 
                 onClick={toggleDrawer(true)}
@@ -74,8 +93,7 @@ const HomeTopBar = () => {
                 <MenuIcon />
             </IconButton>
 
-            {/* Main Navigation Links for larger screens */}
-            <Box display={{ xs: 'none', md: 'flex' }} alignItems={'center'} gap={5}>
+            <Box display={{ xs: 'none', md: 'flex' }} alignItems="center" gap={5}>
                 <Link to="/nft" style={{ textDecoration: 'none' }}>
                     <Typography variant="h6" sx={{ color: 'white', fontWeight: 'bold' }}>NFT</Typography>
                 </Link>
@@ -90,22 +108,47 @@ const HomeTopBar = () => {
                 </Link>
             </Box>
 
-            {/* Add the DCN Dashboard Button in the sidebar */}
             <Button 
                 variant="outlined" 
                 color="primary" 
                 size="large" 
-                gap={3} 
-                to="/account-selection" 
-                component={Link}
-                sx={{ borderRadius: 5, paddingY: 1.5, marginTop: 2, display: { xs: 'none', md: 'flex' } }} // Margin for spacing
+                onClick={handleMenuClick}
+                sx={{ borderRadius: 5, paddingY: 1.5, display: { xs: 'none', md: 'flex' } }}
             >
                 DCN Dashboard
-                <ArrowForwardIcon sx={{mx: 2}}/>
+                <ArrowForwardIcon sx={{ marginLeft: 1 }} />
             </Button>
+            <Menu
+                anchorEl={anchorEl}
+                open={Boolean(anchorEl)}
+                onClose={handleMenuClose}
+                sx={{
+                    '& .MuiPaper-root': {
+                        backgroundColor: 'rgba(0, 0, 0, 0.1)',
+                        color: 'white',
+                        padding: 2
+                    },
+                }}
+            >
+                <MenuItem 
+                    onClick={() => handleMenuClose('student')}
+                    component={Link} 
+                    to="/account/student"
+                    sx={{ '&:hover': { backgroundColor: '#444' }, padding: 2 }}
+                >
+                    Student Dashboard
+                </MenuItem>
+                <MenuItem 
+                    onClick={() => handleMenuClose('institution')}
+                    component={Link} 
+                    to="/account/institution"
+                    sx={{ '&:hover': { backgroundColor: '#444' },  padding: 2 }}
+                >
+                    Institution Dashboard
+                </MenuItem>
+            </Menu>
 
-            {/* Drawer for small screens */}
-            <Drawer anchor='left' open={isOpen} onClose={toggleDrawer(false)}>
+            <Drawer anchor="left" open={isOpen} onClose={toggleDrawer(false)}>
                 {menuItems}
             </Drawer>
         </Box>

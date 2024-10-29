@@ -32,7 +32,7 @@ const CertificateCard = ({ nft }) => {
                 minWidth: 340,
                 // background: 'linear-gradient(45deg, #4a4ab1, violet)',
                 color: 'white',
-                boxShadow: '0 4px 10px rgba(0, 0, 0, 0.1)',
+                // boxShadow: '0 4px 10px rgba(0, 0, 0, 0.1)',
                 overflow: 'hidden'
             }}
         >
@@ -42,8 +42,8 @@ const CertificateCard = ({ nft }) => {
                     <img src={user} alt="user" style={{ width: 60, height: 60, borderRadius: 5 }} />
 
                     <Box>
-                        <Typography variant="body1" sx={{ fontWeight: 'bold', color: Colors.dark }}>{nft.title}</Typography>
-                        <Typography variant="body2" sx={{ color: Colors.dark }}>{nft.description}</Typography>
+                        <Typography variant="body1" sx={{ fontWeight: 'bold', color: Colors.dark }}>{nft.contractName}</Typography>
+                        <Typography variant="body2" sx={{ color: Colors.dark }}> symbol: {nft.tokenSymbol} </Typography>
                     </Box>
 
                     <IconButton sx={{ marginLeft: 'auto', color: Colors.lighter }}>
@@ -70,13 +70,13 @@ const CertificateCard = ({ nft }) => {
                         <Box display="flex" alignItems="center" sx={{ cursor: 'pointer' }} onClick={handleCopy} justifyContent="space-between">
                             <Typography variant="body2" sx={{ fontWeight: 'bold', color: 'black' }}>Certificate ID: </Typography>
                             <Box sx={{ backgroundColor: Colors.light, padding: 0.5, borderRadius: 2, marginLeft: 1, color: Colors.dark }}>
-                                {certId(nft.id)}
+                                {nft.CertID}
                                 <FileCopyIcon sx={{ fontSize: 18, color: 'black', marginLeft: 0.5 }} />
                             </Box>
                         </Box>
                     </Tooltip>
-                    <Typography variant="body2" sx={{ color: Colors.dark, marginTop: 1 }}>Institution: Example University</Typography>
-                    <Typography variant="body2" sx={{ color: Colors.dark }}>Created On: {new Date().toLocaleDateString()}</Typography>
+                    <Typography variant="body2" sx={{ color: Colors.dark, marginTop: 1 }}>Institution: UON University</Typography>
+                    <Typography variant="body2" sx={{ color: Colors.dark }}>Created On: {nft.createdOn}</Typography>
                 </Box>
             </CardContent>
         </Paper>

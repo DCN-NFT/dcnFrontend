@@ -4,8 +4,12 @@ import EditIcon from '@mui/icons-material/Edit';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import institutionDemoData from '../DemoData/demoData';
+import uon from '../../assets/uon.png';
 
 const InstitutionProfileCard = () => {
+    const data = institutionDemoData;
+
     return (
         <Card 
             sx={{ 
@@ -13,8 +17,9 @@ const InstitutionProfileCard = () => {
                 borderRadius: 2, 
                 boxShadow: '0 4px 10px rgba(0,0,0,0.1)', 
                 height: '85vh',
-                backgroundColor: '#f5f5f5', // Light grey background for the card
-                color: '#333' // Darker color for text
+                backgroundColor: '#f5f5f5',
+                color: '#333',
+                overflowY: 'auto'
             }}
         >
             <Typography variant="h5" sx={{ fontWeight: 'bold', color: '#3f51b5', marginBottom: 2 }}>
@@ -23,7 +28,7 @@ const InstitutionProfileCard = () => {
 
             <Box sx={{ display: 'flex', justifyContent: 'center', marginBottom: 3 }}>
                 <img 
-                    src="https://via.placeholder.com/150"
+                    src={uon}
                     alt="Institution Logo"
                     style={{ borderRadius: '50%', width: 150, height: 150 }}
                 />
@@ -32,16 +37,15 @@ const InstitutionProfileCard = () => {
             {/* Basic Info Section */}
             <Box sx={{ marginBottom: 3 }}>
                 <Typography variant="subtitle1" color="textSecondary">Institution Name:</Typography>
-                <Typography variant="body1" sx={{ color: '#000' }}>Example University</Typography>
+                <Typography variant="body1" sx={{ color: '#000' }}>{data.name}</Typography>
             </Box>
 
-            {/* Divider */}
             <Divider sx={{ marginY: 2 }} />
 
             {/* Institution Type */}
             <Box sx={{ marginBottom: 3 }}>
                 <Typography variant="subtitle1" color="textSecondary">Institution Type:</Typography>
-                <Typography variant="body1" sx={{ color: '#000' }}>Public University</Typography>
+                <Typography variant="body1" sx={{ color: '#000' }}>{data.type}</Typography>
             </Box>
 
             <Divider sx={{ marginY: 2 }} />
@@ -49,7 +53,7 @@ const InstitutionProfileCard = () => {
             {/* Established Year */}
             <Box sx={{ marginBottom: 3 }}>
                 <Typography variant="subtitle1" color="textSecondary">Established Year:</Typography>
-                <Typography variant="body1" sx={{ color: '#000' }}>2024</Typography>
+                <Typography variant="body1" sx={{ color: '#000' }}>{data.establishedYear}</Typography>
             </Box>
 
             <Divider sx={{ marginY: 2 }} />
@@ -57,10 +61,10 @@ const InstitutionProfileCard = () => {
             {/* Contact Information Section */}
             <Box sx={{ marginBottom: 3 }}>
                 <Typography variant="subtitle1" color="textSecondary">Contact Email:</Typography>
-                <Typography variant="body1" sx={{ color: '#000' }}>contact@exampleuniversity.edu</Typography>
+                <Typography variant="body1" sx={{ color: '#000' }}>{data.contactEmail}</Typography>
 
                 <Typography variant="subtitle1" color="textSecondary" sx={{ marginTop: 1 }}>Phone Number:</Typography>
-                <Typography variant="body1" sx={{ color: '#000' }}>+123 456 7890</Typography>
+                <Typography variant="body1" sx={{ color: '#000' }}>{data.phoneNumber}</Typography>
             </Box>
 
             <Divider sx={{ marginY: 2 }} />
@@ -69,8 +73,7 @@ const InstitutionProfileCard = () => {
             <Box sx={{ marginBottom: 3 }}>
                 <Typography variant="subtitle1" color="textSecondary">Address:</Typography>
                 <Typography variant="body1" sx={{ color: '#000' }}>
-                    123 University St.<br />
-                    City, State, ZIP
+                    {data.address}
                 </Typography>
             </Box>
 
@@ -79,8 +82,8 @@ const InstitutionProfileCard = () => {
             {/* Website Section */}
             <Box sx={{ marginBottom: 3 }}>
                 <Typography variant="subtitle1" color="textSecondary">Website:</Typography>
-                <Link href="https://www.exampleuniversity.edu" target="_blank" sx={{ color: '#3f51b5' }}>
-                    www.exampleuniversity.edu
+                <Link href={data.website} target="_blank" sx={{ color: '#3f51b5' }}>
+                    {data.website}
                 </Link>
             </Box>
 
@@ -90,7 +93,7 @@ const InstitutionProfileCard = () => {
             <Box sx={{ marginBottom: 3 }}>
                 <Typography variant="subtitle1" color="textSecondary">Affiliations:</Typography>
                 <Typography variant="body2" sx={{ color: '#555' }}>
-                    Member of the Association of American Universities (AAU), Accredited by the Higher Learning Commission
+                    {data.affiliations}
                 </Typography>
             </Box>
 
@@ -100,7 +103,7 @@ const InstitutionProfileCard = () => {
             <Box sx={{ marginBottom: 3 }}>
                 <Typography variant="subtitle1" color="textSecondary">About:</Typography>
                 <Typography variant="body2" sx={{ color: '#555' }}>
-                    Example University is a premier institution focused on excellence in education, research, and innovation.
+                    {data.about}
                 </Typography>
             </Box>
 
@@ -108,13 +111,13 @@ const InstitutionProfileCard = () => {
 
             {/* Social Media Links */}
             <Box sx={{ display: 'flex', gap: 2, marginBottom: 3 }}>
-                <Link href="https://www.facebook.com/ExampleUniversity" target="_blank" color="inherit">
+                <Link href={data.socialMedia.facebook} target="_blank" color="inherit">
                     <FacebookIcon sx={{ color: '#4267B2' }} />
                 </Link>
-                <Link href="https://www.twitter.com/ExampleUniv" target="_blank" color="inherit">
+                <Link href={data.socialMedia.twitter} target="_blank" color="inherit">
                     <TwitterIcon sx={{ color: '#1DA1F2' }} />
                 </Link>
-                <Link href="https://www.linkedin.com/school/example-university" target="_blank" color="inherit">
+                <Link href={data.socialMedia.linkedin} target="_blank" color="inherit">
                     <LinkedInIcon sx={{ color: '#2867B2' }} />
                 </Link>
             </Box>
@@ -128,9 +131,9 @@ const InstitutionProfileCard = () => {
                     marginTop: 'auto', 
                     width: '100%', 
                     fontWeight: 'bold',
-                    backgroundColor: '#3f51b5', // Blue color for the button
+                    backgroundColor: '#3f51b5',
                     color: '#fff', 
-                    '&:hover': { backgroundColor: '#303f9f' } // Darker shade on hover
+                    '&:hover': { backgroundColor: '#303f9f' }
                 }}
             >
                 Edit Profile

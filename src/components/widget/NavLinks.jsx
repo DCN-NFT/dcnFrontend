@@ -31,21 +31,21 @@ const walletLinks = [
 ];
 
 const settingsLinks = [
-    { label: 'Setting', path: 'account/student/setting', icon: <SettingsIcon sx={{ marginRight: '10px' }} /> },
-    { label: 'Notifications', path: 'account/student/notification', icon: <Notification sx={{ marginRight: '10px' }} /> },
-    { label: 'Logout', path: 'account/student/logout', icon: <LogoutIcon sx={{ marginRight: '10px' }} />}
+    { label: 'Setting', path: '/account/student/setting', icon: <SettingsIcon sx={{ marginRight: '10px' }} /> },
+    // { label: 'Notifications', path: '/account/student/notification', icon: <Notification sx={{ marginRight: '10px' }} /> },
+    { label: 'Logout', path: '/account/student/logout', icon: <LogoutIcon sx={{ marginRight: '10px' }} />}
 ];
 
 // Admin-specific links
 const adminOverViewLinks = [
     { label: 'Dashboard', path: '/account/institution/dashboard', icon: <DashboardIcon sx={{ marginRight: '10px' }} /> },
-    { label: 'Explore', path: '/account/institution/explore', icon: <ExploreOutlined sx={{ marginRight: '10px' }} /> },
-    { label: 'Reports', path: '/account/institution/reports', icon: <BarChartIcon sx={{ marginRight: '10px' }} /> },
+    { label: 'Manage Staff', path: '/account/institution/manage-staff', icon: <ExploreOutlined sx={{ marginRight: '10px' }} /> },
+    // { label: 'Reports', path: '/account/institution/reports', icon: <BarChartIcon sx={{ marginRight: '10px' }} /> },
 ];
 
 const adminWalletLinks = [
     { label: 'Wallet Accounts', path: '/account/institution/wallets', icon: <DashboardIcon sx={{ marginRight: '10px' }} /> },
-    { label: 'NFT Market', path: '/account/institution/nft-market', icon: <BarChartIcon sx={{ marginRight: '10px' }} /> },
+    // { label: 'NFT Market', path: '/account/institution/nft-market', icon: <BarChartIcon sx={{ marginRight: '10px' }} /> },
     { label: 'Collection', path: '/account/institution/collection', icon: <RedeemIcon sx={{ marginRight: '10px' }} /> },
     { label: 'Create', path: '/account/institution/create-nft', icon: <PlusOneOutlined sx={{ marginRight: '10px' }} /> },
 ];
@@ -204,7 +204,7 @@ const NavLinks = ({ isCollapsed }) => {
             <Box sx={{ marginTop: 'auto', paddingTop: 2, display: 'flex', alignItems: 'center', gap: 3 }}>
                 {/* User Icon and Name */}
                 <AccountCircleIcon sx={{ color: Colors.primary, fontSize: 52, marginRight: 1 }} />
-                <Box sx={{ marginBottom: '10px' }}>
+                <Box sx={{ marginBottom: '10px', overflowX: 'scroll', maxWidth: 200 }}>
                     {!isCollapsed && 
                     <>
                         <Typography variant="body1" sx={{ color: Colors.primary, fontWeight: 'bold' }}>USERNAME</Typography>
