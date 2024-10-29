@@ -11,6 +11,7 @@ import Image1 from '../assets/image1.png';
 import { Link } from 'react-router-dom';
 import Footer from '../components/widget/Footer'
 import ThreeDModel from '../components/widget/ThreeDModel';
+import ParticlesComponent from '../components/widget/ParticlesComponent';
 
 const academicAchievements = [  
     {
@@ -66,6 +67,7 @@ const HomePage = () => {
                 position: 'relative', height: '100vh',
                 background: '#090c2c'
             }}>
+            <ParticlesComponent />
             <Box 
                 className="home-page__bg"
                 sx={{
@@ -78,7 +80,8 @@ const HomePage = () => {
                     paddingX: { xs: 0, sm: 10, md: 35, lg: 35 },
                     paddingY: { xs: 0, sm: 10, md: 5, lg: 5 },
                     borderRadius: '0 0 50px 50px',
-                    overflow: 'hidden'
+                    overflow: 'hidden',
+                    zIndex: 10000
                 }}
             >
 
