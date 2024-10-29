@@ -15,6 +15,8 @@ import CreateNft from './pages/CreateNft';
 import NftCollection from './pages/NftCollection';
 import AccountSelectionPage from './pages/AccountSelectionPage';
 import WalletAccountInsPage from './pages/WalletAccountInsPage';
+import ManagerStaff from './pages/ManagerStaff';
+
 const App = () => {
     return (
         <AppProvider>
@@ -30,7 +32,7 @@ const App = () => {
                     <Route path="account/student/wallets" element={<WalletAccountPage />} />
                     <Route path="account/student/claim-nfts" element={<ClaimNft />} />
                     <Route path="account/student/setting" element={<SettingsPages />} />
-                    <Route path="*" element={<HomePage />} />
+                    {/* <Route path="*" element={<HomePage />} /> */}
 
                     {/* admin pages routes */}
                     <Route path="/account/institution" element={<AdminDashboard />} />
@@ -38,6 +40,7 @@ const App = () => {
                     <Route path="/account/institution/create-nft" element={<CreateNft />} />
                     <Route path="/account/institution/collection" element={<NftCollection />} />
                     <Route path="/account/institution/wallets" element={<WalletAccountInsPage />} />
+                    <Route path="*" element={<ManagerStaff/>} />
                 </Routes>
             </Router>
         </AppProvider>
