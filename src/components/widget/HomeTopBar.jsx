@@ -53,10 +53,11 @@ const HomeTopBar = () => {
             </Link>
             <Button 
                 variant="outlined" 
-                color="primary" 
                 size="large" 
                 to="/account-selection" 
                 component={Link}
+                // color to white
+                color="default"
                 sx={{
                     borderRadius: 5,
                     paddingY: 1.5,
@@ -93,31 +94,37 @@ const HomeTopBar = () => {
                 <MenuIcon />
             </IconButton>
 
-            <Box display={{ xs: 'none', md: 'flex' }} alignItems="center" gap={5}>
+            <Box display={{ xs: 'none', md: 'flex' }} alignItems="center" gap={10}>
                 <Link to="/nft" style={{ textDecoration: 'none' }}>
-                    <Typography variant="h6" sx={{ color: 'white', fontWeight: 'bold' }}>NFT</Typography>
+                    <Typography variant="body1" sx={{ color: 'white', fontWeight: 'bold' }}>NFT Market</Typography>
                 </Link>
                 <Link to="/docs" style={{ textDecoration: 'none' }}>
-                    <Typography variant="h6" sx={{ color: 'white', fontWeight: 'bold' }}>Docs</Typography>
+                    <Typography variant="body1" sx={{ color: 'white', fontWeight: 'bold' }}>Learn</Typography>
                 </Link>
                 <Link to="/wallet" style={{ textDecoration: 'none' }}>
-                    <Typography variant="h6" sx={{ color: 'white', fontWeight: 'bold' }}>My Wallet</Typography>
+                    <Typography variant="body1" sx={{ color: 'white', fontWeight: 'bold' }}>Develop</Typography>
                 </Link>
                 <Link to="/pricing" style={{ textDecoration: 'none' }}>
-                    <Typography variant="h6" sx={{ color: 'white', fontWeight: 'bold' }}>Pricing</Typography>
+                    <Typography variant="body1" sx={{ color: 'white', fontWeight: 'bold' }}>Pricing</Typography>
                 </Link>
             </Box>
 
             <Button 
                 variant="outlined" 
-                color="primary" 
                 size="large" 
                 onClick={handleMenuClick}
-                sx={{ borderRadius: 5, paddingY: 1.5, display: { xs: 'none', md: 'flex' } }}
+                sx={{ 
+                    borderRadius: 5, 
+                    paddingY: 1.5, 
+                    color: 'white',           // Text color
+                    borderColor: 'white',     // Border color
+                    display: { xs: 'none', md: 'flex' } 
+                }}
             >
                 DCN Dashboard
-                <ArrowForwardIcon sx={{ marginLeft: 1 }} />
+                <ArrowForwardIcon sx={{ color: 'white', marginLeft: 1 }} /> {/* Icon color */}
             </Button>
+
             <Menu
                 anchorEl={anchorEl}
                 open={Boolean(anchorEl)}

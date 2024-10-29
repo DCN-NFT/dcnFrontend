@@ -20,7 +20,7 @@ const ParticlesComponent = () => {
     const options = useMemo(() => ({
         background: {
             color: {
-                value: "#090c2c",
+                value: "transparent",
             },
         },
         fpsLimit: 120,
@@ -40,17 +40,17 @@ const ParticlesComponent = () => {
                     quantity: 4,
                 },
                 repulse: {
-                    distance: 200,
+                    distance: .1,
                     duration: 0.4,
                 },
             },
         },
         particles: {
             color: {
-                value: "#ffffff",
+                value: "rgba(255, 255, 255, 0.1)",
             },
             links: {
-                color: "#ffffff",
+                color: "rgba(255, 255, 255, 0.1)",
                 distance: 150,
                 enable: true,
                 opacity: 0.5,
@@ -60,17 +60,17 @@ const ParticlesComponent = () => {
                 direction: "none",
                 enable: true,
                 outModes: {
-                    default: "bounce",
+                    default: "none",
                 },
                 random: false,
-                speed: 2,
+                speed: 1,
                 straight: false,
             },
             number: {
                 density: {
                     enable: true,
                 },
-                value: 80,
+                value: 1,
             },
             opacity: {
                 value: 0.5,
@@ -80,6 +80,9 @@ const ParticlesComponent = () => {
             },
             size: {
                 value: { min: 1, max: 5 },
+            },
+            zIndex: {
+                value: 0,
             },
         },
         detectRetina: true,
@@ -91,14 +94,6 @@ const ParticlesComponent = () => {
                 id="tsparticles"
                 particlesLoaded={particlesLoaded}
                 options={options}
-                style={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    width: '100%',
-                    height: '100%',
-                    zIndex: -100,
-                }}
             />
         );
     }
