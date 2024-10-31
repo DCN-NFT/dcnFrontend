@@ -16,12 +16,12 @@ const NotificationDrawer = ({ open, onClose }) => {
     ]);
     
 
-    useEffect(() => {
-        // Request permission for notifications
-        if (Notification.permission !== "granted") {
-            Notification.requestPermission();
-        }
-    }, []);
+    // useEffect(() => {
+    //     // Request permission for notifications
+    //     if (Notification.permission !== "granted") {
+    //         Notification.requestPermission();
+    //     }
+    // }, []);
 
     const handleTabChange = (event, newValue) => {
         setTabValue(newValue);

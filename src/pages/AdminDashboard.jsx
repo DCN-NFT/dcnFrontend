@@ -28,14 +28,15 @@ const AdminDashboard = () => {
     useEffect(() => {
         const handleFetchNftData = async () => {
             // fetch from local storage
-            const nftData = JSON.parse(localStorage.getItem('contracts'));
-            setNftData(nftData);
-            console.log(nftData);
+            if (!localStorage.getItem('contracts')) {
+                localStorage.setItem('contracts', JSON.stringify(nftData));
+                setNftData(nftData);
+                console.log(nftData);
+            }
         };
 
         handleFetchNftData();
     }, []);
-
     // Handle Previous button click
     const handlePrevious = () => {
         if (currentIndex > 0) {
