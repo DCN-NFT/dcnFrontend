@@ -25,6 +25,8 @@
     "@tsparticles/react": "^3.0.0",
     "@tsparticles/slim": "^3.5.0",
     "@wagmi/core": "^2.14.1",
+    "@web3modal/ethereum": "^2.7.1",
+    "@web3modal/react": "^2.7.1",
     "ethers": "^6.13.4",
     "framer-motion": "^11.11.9",
     "install": "^0.13.0",

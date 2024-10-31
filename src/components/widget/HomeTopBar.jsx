@@ -7,6 +7,26 @@ import ChevronDown from '@mui/icons-material/ChevronRight';
 import MenuIcon from '@mui/icons-material/Menu'; 
 import { useNavigate } from 'react-router-dom';
 import { useAppContext } from '../../context/AppProvider';
+import { Web3Modal } from '@web3modal/react';
+import { chains, providers} from '@web3modal/ethereum'
+import { authConnector } from '@reown/appkit-adapter-wagmi';
+
+const modalConfig = {
+    theme: 'dark',
+    accentColor: 'default',
+    ethereum: {
+        appName: 'DCN',
+        chains: ['mainnet', 'rinkeby', 'ropsten', 'goerli', 'kovan'],
+        providers: [
+            providers.walletConnectProvider({
+                projectId: 'c1fb1f6e1b9db4629c96dcfb5755f1a6',
+            })
+        ],
+        authConnect: true
+    },
+    projectId: "c1fb1f6e1b9db4629c96dcfb5755f1a6",
+};
+
 
 const HomeTopBar = () => {
     const [isOpen, setIsOpen] = useState(false); 
@@ -159,6 +179,8 @@ const HomeTopBar = () => {
                     Institution Dashboard
                 </MenuItem>
             </Menu>
+
+            <Web3Modal config={modalConfig}/>
 
             <Drawer anchor="left" open={isOpen} onClose={toggleDrawer(false)}>
                 {menuItems}

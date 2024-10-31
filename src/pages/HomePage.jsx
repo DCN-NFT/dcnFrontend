@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+
 import HomeTopBar from '../components/widget/HomeTopBar';
 import WhyChooseUs from '../components/widget/WhyChooseUs';
 import AcademicAchievement from '../components/widget/AcademicAchievement';
@@ -38,29 +39,6 @@ const academicAchievements = [
         buttonLabel: 'Verify Your Credentials'
     }
 ];
-
-const AchievementsEfficiently = [
-    {
-        title: 'Comprehensive Dashboard',
-        description: 'View all your credentials and their statuses at a glance.',
-        buttonLabel: 'Explore the Dashboard'
-    }, 
-    {
-        title: 'Analytics Insights',
-        description: 'Track your progress and engagement with insightful metrics.',
-        buttonLabel: 'View Your Analytics'
-    },
-    {
-        title: 'Custom Alerts',
-        description: 'Set personalized notifications to stay on top of important updates.',
-        buttonLabel: 'Customize Alerts Today'
-    },
-    {
-        title: 'Support Access',
-        description: 'Quickly reach support for any queries or assistance needed.',
-        buttonLabel: 'Get Support Now'
-    }
-]
 
 
 const HomePage = () => {
@@ -223,7 +201,7 @@ const HomePage = () => {
             <AcademicAchievement />
 
             {/* ##########################  Our Creators  ########################## */}
-            <OurCreators />
+            {/* <OurCreators /> */}
 
 
             {/* ###################################################### */}
