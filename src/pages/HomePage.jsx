@@ -13,7 +13,7 @@ import Footer from '../components/widget/Footer'
 import ThreeDModel from '../components/widget/ThreeDModel';
 import ParticlesComponent from '../components/widget/ParticlesComponent';
 import { Type } from 'lucide-react';
-
+import PartnerCard from '../components/PartnerCard';
 // import InifiniteLooper from '../components/widget/InifiniteLooper';
 
 const academicAchievements = [  
@@ -192,6 +192,8 @@ const HomePage = () => {
 
             {/* ##########################  InfiniteLooper  ########################## */}
             {/* <InifiniteLooper s */}
+
+            <PartnerCard items = {academicAchievements} />
 
             {/* empowering students */}
             <Box 

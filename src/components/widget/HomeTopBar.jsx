@@ -3,6 +3,7 @@ import { Box, Typography, Button, IconButton, Drawer, Menu, MenuItem } from '@mu
 import { Link } from 'react-router-dom';
 import dcnlogo from '../../assets/dcnlogo.png';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import ChevronDown from '@mui/icons-material/ChevronRight';
 import MenuIcon from '@mui/icons-material/Menu'; 
 import { useNavigate } from 'react-router-dom';
 import { useAppContext } from '../../context/AppProvider';
@@ -66,6 +67,7 @@ const HomeTopBar = () => {
                 }}
             >
                 DCN Dashboard
+                <ChevronDown />
                 <ArrowForwardIcon sx={{ marginLeft: 1 }} />
             </Button>
         </Box>
@@ -96,7 +98,7 @@ const HomeTopBar = () => {
 
             <Box display={{ xs: 'none', md: 'flex' }} alignItems="center" gap={10}>
                 <Link to="/nft" style={{ textDecoration: 'none' }}>
-                    <Typography variant="body1" sx={{ color: 'white', fontWeight: 'bold' }}>NFT Market</Typography>
+                    <Typography variant="body1" sx={{ color: 'white', fontWeight: 'bold' }}>About</Typography>
                 </Link>
                 <Link to="/docs" style={{ textDecoration: 'none' }}>
                     <Typography variant="body1" sx={{ color: 'white', fontWeight: 'bold' }}>Learn</Typography>
@@ -105,7 +107,7 @@ const HomeTopBar = () => {
                     <Typography variant="body1" sx={{ color: 'white', fontWeight: 'bold' }}>Develop</Typography>
                 </Link>
                 <Link to="/pricing" style={{ textDecoration: 'none' }}>
-                    <Typography variant="body1" sx={{ color: 'white', fontWeight: 'bold' }}>Pricing</Typography>
+                    <Typography variant="body1" sx={{ color: 'white', fontWeight: 'bold' }}>Contact</Typography>
                 </Link>
             </Box>
 
@@ -122,7 +124,10 @@ const HomeTopBar = () => {
                 }}
             >
                 DCN Dashboard
-                <ArrowForwardIcon sx={{ color: 'white', marginLeft: 1 }} /> {/* Icon color */}
+                <ChevronDown sx={{transform:
+                'rotate(90deg)' 
+                }}
+                />
             </Button>
 
             <Menu
@@ -163,3 +168,4 @@ const HomeTopBar = () => {
 };
 
 export default HomeTopBar;
+
