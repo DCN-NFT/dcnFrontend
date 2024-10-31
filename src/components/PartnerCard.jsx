@@ -4,12 +4,12 @@ import { Card, CardContent, Typography, Button, Box } from "@mui/material";
 
 
 const instituitons = [
-  { name: 'MKU University', description: 'MKU University is a leading institution in Kenya.' },
-  { name: 'KU University', description: 'KU University is a leading institution in Kenya.' },
-  { name: 'JKUAT University', description: 'JKUAT University is a leading institution in Kenya.' },
-  { name: 'Strathmore University', description: 'Strathmore University is a leading institution in Kenya.' },
-  { name: 'UON University', description: 'UON University is a leading institution in Kenya.' },
-  { name: 'KCA University', description: 'KCA University is a leading institution in Kenya.' },
+  { name: 'MKU University', description: 'MKU University is a leading institution in Kenya.', logo: 'https://theinformer.co.ke/wp-content/uploads/2022/04/MKUS-1.png' },
+  { name: 'KU University', description: 'KU University is a leading institution in Kenya.', logo: 'https://theinformer.co.ke/wp-content/uploads/2022/04/MKUS-1.png' },
+  { name: 'JKUAT University', description: 'JKUAT University is a leading institution in Kenya.', logo: 'https://theinformer.co.ke/wp-content/uploads/2022/04/MKUS-1.png' },
+  { name: 'Strathmore University', description: 'Strathmore University is a leading institution in Kenya.', logo: 'https://theinformer.co.ke/wp-content/uploads/2022/04/MKUS-1.png' },
+  { name: 'UON University', description: 'UON University is a leading institution in Kenya.', logo: 'https://theinformer.co.ke/wp-content/uploads/2022/04/MKUS-1.png' },
+  { name: 'KCA University', description: 'KCA University is a leading institution in Kenya.', logo: 'https://theinformer.co.ke/wp-content/uploads/2022/04/MKUS-1.png' },
 ];
 
 function PartnerCard({ items = [] }) {
@@ -24,33 +24,40 @@ function PartnerCard({ items = [] }) {
   };
 
   return (
-    <Box sx={{ maxWidth: "100%", margin: "0 auto", paddingY: "3rem", backgroundColor: 'green' }}>
-      <Slider {...settings} style={{ backgroundColor: "#yellow", padding: "10px", borderRadius: "8px" }}>
+    <Box sx={{ maxWidth: "100%", margin: "0 auto", paddingY: "3rem", backgroundColor: '#090c2c' }}>
+      <Slider {...settings} style={{ backgroundColor: "#090c2c", padding: "25px", borderRadius: "8px", height: 300 }}>
         {instituitons.map((item, index) => (
-          <Box key={index} sx={{ padding: "0 1rem", background: 'orange' }}>
+          <Box key={index} sx={{ padding: "0 1rem", background: '#090c2c' }}>
             <Card sx={{ 
               height: 250, 
               display: "flex", 
               flexDirection: "column", 
-              justifyContent: "space-between", 
+              justifyContent: "center", 
               backgroundColor: '#090c2c',
-              boxShadow: 'none' ,
+              boxShadow: '0 5px 10px rgba(255, 255, 255, 1)',
               borderRadius: '15px',
+              marginY: 2 ,
+               paddingX: 4,
             }}>
-              <CardContent sx={{ backgroundColor: 'transparent' }}>
-                <Typography variant="h4" component="div" gutterBottom sx={{ color: 'white' }}>
-                  {item.name}
-                </Typography>
-                <Typography variant="body1" color="text.secondary" sx={{ color: 'white' }}>
-                  {item.description}
-                </Typography>
+              <CardContent sx={{ backgroundColor: 'transparent' }} display="flex" justifyContent="space-between">
+
+                <Box>
+                  <Typography variant="h4" component="div" gutterBottom sx={{ color: 'white' }}>
+                    {item.name}
+                  </Typography>
+                  <Typography variant="body1" color="text.secondary" sx={{ color: 'white' }}>
+                    {item.description}
+                  </Typography>
+                </Box>
+
+                <Box>
+                  <img src={item.logo} alt="" 
+                      width="100"
+                    />
+                </Box>
               </CardContent>
-              <Box textAlign="center" sx={{ paddingBottom: "1rem", backgroundColor: 'transparent' }}>
-                <Button variant="outlined" color="primary"
-                >
-                  View Profile
-                </Button>
-              </Box>
+
+
             </Card>
           </Box>
         ))}
