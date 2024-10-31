@@ -186,6 +186,8 @@ const HomePage = () => {
                 </Box>
 
             </Box>
+            
+            <PartnerCard items = {academicAchievements} />
 
             {/* ##########################  Main Content  ########################## */}
             <WhyChooseUs />
@@ -193,7 +195,6 @@ const HomePage = () => {
             {/* ##########################  InfiniteLooper  ########################## */}
             {/* <InifiniteLooper s */}
 
-            <PartnerCard items = {academicAchievements} />
 
             {/* empowering students */}
             <Box 
