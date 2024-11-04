@@ -11,6 +11,11 @@ const CreateContractWidget = () => {
     const [tokenSymbol, setTokenSymbol] = useState('CRT');
     const [previewUrl, setPreviewUrl] = useState(null);
 
+
+    const axios = require('axios');
+    const fs = require('fs');
+    const FormData = require('form-data');
+
     const toggleSidebar = () => {
         setIsSidebarOpen(!isSidebarOpen);
     };
@@ -24,46 +29,84 @@ const CreateContractWidget = () => {
         }
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
+        try {
+        const folder = 'testing_json';
+    //   const json1 = { hello: 'world' }
+    //   const json2 = { hello: 'world2' }
+    const generateCertID = () => {
+        const prefix = "0#CRT";
+        const randomString = Array.from({ length: 10 }, () =>
+            String.fromCharCode(65 + Math.floor(Math.random() * 26))
+        ).join(""); // Generates a 10-character random uppercase alphabet string
+        return `${prefix}${randomString}`;
+    };
+      const contractData = {
+        CertID: generateCertID(),
+        contractName,
+        walletAddress,
+        tokenSymbol,
+        logoImage: file ? file.name : null,
+        createdOn: new Date().toISOString(),
+    };
+
+    // Retrieve existing data from localStorage
+    const existingContracts = JSON.parse(localStorage.getItem("contracts")) || [];
     
-        const generateCertID = () => {
-            const prefix = "0#CRT";
-            const randomString = Array.from({ length: 10 }, () =>
-                String.fromCharCode(65 + Math.floor(Math.random() * 26))
-            ).join(""); // Generates a 10-character random uppercase alphabet string
-            return `${prefix}${randomString}`;
-        };
-        
-        // Create the contract data object
-        const contractData = {
-            CertID: generateCertID(),
-            contractName,
-            walletAddress,
-            tokenSymbol,
-            logoImage: file ? file.name : null,
-            createdOn: new Date().toISOString(),
-        };
+    // Append new contract data to the existing array
+    existingContracts.push(contractData);
+    const jsonString = JSON.stringify(contractData, null, 2);
+      
+    //   const files = [
+        // new File([blob1], 'hello.json', { type: 'application/json' }),
+        // new File([blob2], 'hello2.json', { type: 'application/json' })
+    //   ]
+    const blobs = new Blob([jsonString], { type: "application/json" })
+   
+      const data = new FormData();
+      
+      Array.from(blobs).forEach((blob) => {
+        data.append('file', blob, `${folder}/${blob.name}`)
+      })
+      
+       const pinataMetadata = JSON.stringify({
+            name: `${folder}`
+          })
+          data.append('pinataMetadata', pinataMetadata)
+          const req = {
+            method: 'POST',
+            headers: {
+              'Authorization': `Bearer ${PINATA_JWT}`,
+                
+            },
+            body: data
+          }
+          
+          const res = await fetch('https://api.pinata.cloud/pinning/pinFileToIPFS', req)
+          console.log(req, res)
+          const resData = await res.json()
+          console.log(resData)
+        } catch (error) {
+          console.log(error)
+        }
     
-        // Retrieve existing data from localStorage
-        const existingContracts = JSON.parse(localStorage.getItem("contracts")) || [];
         
-        // Append new contract data to the existing array
-        existingContracts.push(contractData);
         
         // Save the updated array back to localStorage
-        localStorage.setItem("contracts", JSON.stringify(existingContracts));
+        // localStorage.setItem("contracts", JSON.stringify(existingContracts));
     
         // Optional: Alert the user or log the action
-        alert("Contract created and saved!");
+        // alert("Contract created and saved!");
         
         // Create a Blob from the JSON string and trigger a download (optional)
-        const jsonString = JSON.stringify(contractData, null, 2);
-        const blob = new Blob([jsonString], { type: "application/json" });
-        const link = document.createElement("a");
-        link.href = URL.createObjectURL(blob);
-        link.download = `${contractName || 'contract'}.json`;
-        link.click();
+        // const jsonString = JSON.stringify(contractData, null, 2);
+        // const blob = new Blob([jsonString], { type: "application/json" });
+
+        // const link = document.createElement("a");
+        // link.href = URL.createObjectURL(blob);
+        // link.download = `${contractName || 'contract'}.json`;
+        // link.click();
     };
     
     
